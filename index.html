@@ -3,35 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ブラックホールAI - サービス詳細</title>
+    <title data-i18n="page-title">ブラックホールAI - ワンストップAIコンテンツ生成機関</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Hiragino+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Print Optimization Styles */
+        @media print {
+            body {
+                font-size: 11pt;
+                line-height: 1.6;
+                color: #000;
+                background: white;
+            }
+           
+            .page-break {
+                page-break-after: always;
+                break-after: always;
+            }
+           
+            .no-print {
+                display: none !important;
+            }
+           
+            nav {
+                display: none !important;
+            }
+           
+            .back-to-main {
+                display: none !important;
+            }
+           
+            .hero, .service-hero {
+                background: white !important;
+                color: #000 !important;
+                padding: 40px 20px !important;
+            }
+           
+            h1, h2, h3, h4 {
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+           
+            .gradient-text {
+                background: none !important;
+                -webkit-text-fill-color: #000 !important;
+                color: #000 !important;
+            }
+           
+            .feature-card, .service-visual-box, .timeline-item {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+           
+            .quote-block, .plagiarism-section, .cta-section, .modeling-section {
+                background: #f5f5f5 !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+           
+            .plagiarism-feature, .modeling-feature {
+                background: white !important;
+                border: 1px solid #ddd !important;
+            }
+           
+            a {
+                color: #000 !important;
+                text-decoration: underline !important;
+            }
+           
+            .page-number {
+                position: fixed;
+                bottom: 10mm;
+                right: 10mm;
+                font-size: 10pt;
+            }
+        }
+       
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+       
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
             background-color: #ffffff;
             color: #1d1d1f;
-            line-height: 1.8;
-            overflow-x: hidden;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            font-size: 16px; /* Base font size for better readability */
         }
-        
-        /* Navigation (共通) */
+       
+        /* Navigation - Hidden in print */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
+       
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -40,1100 +116,1833 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+       
         .logo {
-            font-size: 24px;
+            font-size: clamp(20px, 3vw, 24px); /* Responsive logo size */
             font-weight: 600;
             background: linear-gradient(45deg, #000000, #6e40aa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            cursor: pointer;
         }
-        
-        .nav-links {
+       
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
-            gap: 40px;
-            list-style: none;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 80px;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
         }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #1d1d1f;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
+       
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
         }
-        
-        .nav-links a:hover {
-            opacity: 0.6;
+       
+        .hero h1, .gradient-text {
+            font-size: clamp(36px, 6vw, 60px); /* Reduced and responsive */
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #000000, #6e40aa, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .nav-links a.active {
-            color: #6e40aa;
+       
+        .hero p {
+            font-size: clamp(18px, 3vw, 22px); /* Adjusted for responsiveness */
+            color: #86868b;
+            margin-bottom: 40px;
+        }
+       
+        /* Section Styles */
+        .section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+       
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px); /* Responsive section title */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+       
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+       
+        .feature-card {
+            background: #f5f5f7;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+        }
+       
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+       
+        .feature-card h3 {
+            font-size: clamp(20px, 3vw, 24px); /* Responsive */
             font-weight: 600;
+            margin-bottom: 15px;
         }
-        
-        /* Service Hero Section */
-        .service-hero {
-            padding: 120px 40px 60px;
-            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+       
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: clamp(14px, 2vw, 16px); /* Adjusted */
+        }
+       
+        /* Special Sections */
+        .plagiarism-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 40px;
+            color: white;
             text-align: center;
         }
-        
-        .service-hero h1 {
-            font-size: 48px;
+       
+        .plagiarism-content h2 {
+            font-size: clamp(32px, 5vw, 48px); /* Responsive */
             font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #000000, #6e40aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
         }
-        
-        .service-hero p {
-            font-size: 20px;
-            color: #86868b;
-            max-width: 800px;
-            margin: 0 auto;
+       
+        .plagiarism-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        /* Service Content Section */
-        .service-content {
+       
+        .plagiarism-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+        }
+       
+        /* Service Details */
+        .service-detail {
+            padding: 60px 40px;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 80px 40px;
         }
-        
-        .content-block {
-            margin-bottom: 80px;
-        }
-        
-        .content-block h2 {
-            font-size: 36px;
+       
+        .service-detail h2 {
+            font-size: clamp(28px, 4vw, 36px); /* Responsive */
             font-weight: 600;
             margin-bottom: 30px;
             color: #1d1d1f;
         }
-        
-        .content-block h3 {
-            font-size: 24px;
+       
+        .service-detail h3 {
+            font-size: clamp(22px, 3vw, 28px); /* Responsive */
             font-weight: 600;
             margin-bottom: 20px;
-            color: #333;
+            margin-top: 40px;
         }
-        
-        .content-block p {
-            font-size: 18px;
+       
+        .service-detail p {
+            font-size: clamp(14px, 2vw, 16px); /* Adjusted */
             line-height: 1.8;
-            color: #666;
+            color: #333;
             margin-bottom: 20px;
         }
-        
-        /* Feature List */
-        .feature-list {
-            list-style: none;
-            margin: 30px 0;
+       
+        /* Timeline */
+        .timeline {
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 3px solid #6e40aa;
         }
-        
-        .feature-list li {
-            padding: 20px;
-            margin-bottom: 15px;
-            background: #f5f5f7;
-            border-radius: 12px;
-            display: flex;
-            align-items: flex-start;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-list li:hover {
-            background: #ececef;
-            transform: translateX(5px);
-        }
-        
-        .feature-list .icon {
-            font-size: 24px;
-            margin-right: 20px;
-            color: #6e40aa;
-        }
-        
-        .feature-list .content {
-            flex: 1;
-        }
-        
-        .feature-list .content h4 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        /* Process Timeline */
-        .process-timeline {
-            position: relative;
-            padding: 40px 0;
-            margin: 60px 0;
-        }
-        
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e5e5e7;
-            transform: translateX(-50%);
-        }
-        
+       
         .timeline-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f5f7;
+            border-radius: 10px;
+            margin-left: 20px;
             position: relative;
-            padding: 30px;
-            margin-bottom: 40px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            width: calc(50% - 40px);
         }
-        
-        .timeline-item:nth-child(odd) {
-            margin-left: auto;
-        }
-        
+       
         .timeline-item::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            left: -33px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
             background: #6e40aa;
             border-radius: 50%;
-            top: 40px;
         }
-        
-        .timeline-item:nth-child(odd)::before {
-            left: -50px;
-        }
-        
-        .timeline-item:nth-child(even)::before {
-            right: -50px;
-        }
-        
+       
         .timeline-item h4 {
-            font-size: 20px;
+            font-size: clamp(16px, 2.5vw, 20px); /* Responsive */
             font-weight: 600;
             margin-bottom: 10px;
             color: #6e40aa;
         }
-        
-        /* Case Study Card */
-        .case-study {
-            background: #f5f5f7;
-            border-radius: 20px;
-            padding: 40px;
+       
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
             margin: 60px 0;
         }
-        
-        .case-study h3 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1d1d1f;
+       
+        .stat-item h4 {
+            font-size: clamp(32px, 5vw, 48px); /* Responsive */
+            font-weight: 700;
+            color: #6e40aa;
+            margin-bottom: 10px;
         }
-        
-        .case-study .highlight {
-            font-size: 48px;
+       
+        .stat-item p {
+            font-size: clamp(16px, 2vw, 18px); /* Adjusted */
+            color: #666;
+        }
+       
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+       
+        .team-member {
+            background: #f5f5f7;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+       
+        .team-member h4 {
+            font-size: clamp(18px, 2.5vw, 22px); /* Responsive */
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+       
+        .team-member .role {
+            color: #6e40aa;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+       
+        /* Quote Block */
+        .quote-block {
+            background: #f5f5f7;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border-left: 4px solid #6e40aa;
+        }
+       
+        .quote-block p {
+            font-size: clamp(16px, 2vw, 18px); /* Adjusted */
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+       
+        .quote-block .author {
+            font-size: clamp(14px, 1.8vw, 16px); /* Adjusted */
+            color: #666;
+        }
+       
+        /* Case Study */
+        .case-study {
+            background: #f8f8fa;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+       
+        .case-study h3 {
+            font-size: clamp(22px, 3vw, 28px); /* Responsive */
+            margin-bottom: 20px;
+        }
+       
+        .highlight {
+            font-size: clamp(32px, 5vw, 48px); /* Responsive */
             font-weight: 700;
             color: #6e40aa;
             margin: 20px 0;
         }
-        
-        /* Quote Block */
-        .quote-block {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+       
+        /* Page Break for PDF */
+        .page-break {
+            margin: 0;
+            padding: 0;
+            height: 0;
+        }
+       
+        /* Table of Contents */
+        .toc {
+            margin: 40px 0;
             padding: 40px;
+            background: #f5f5f7;
             border-radius: 20px;
-            margin: 60px 0;
-            position: relative;
         }
-        
-        .quote-block::before {
-            content: '"';
-            font-size: 80px;
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            opacity: 0.3;
+       
+        .toc h2 {
+            font-size: clamp(24px, 4vw, 32px); /* Responsive */
+            margin-bottom: 30px;
         }
-        
-        .quote-block p {
-            font-size: 20px;
-            font-style: italic;
-            margin-bottom: 20px;
-            color: white;
+       
+        .toc-list {
+            list-style: none;
+            line-height: 2;
         }
-        
-        .quote-block .author {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        /* Tabs */
-        .service-tabs {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
+       
+        .toc-list li {
+            font-size: clamp(14px, 2vw, 16px); /* Adjusted */
+            padding: 5px 0;
             border-bottom: 1px solid #e5e5e7;
         }
-        
-        .tab-button {
-            padding: 15px 30px;
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: 500;
-            color: #86868b;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
+       
+        .toc-list li:last-child {
+            border-bottom: none;
         }
-        
-        .tab-button.active {
-            color: #1d1d1f;
-        }
-        
-        .tab-button.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #6e40aa;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 80px 40px;
-            text-align: center;
-            color: white;
-            margin-top: 100px;
-        }
-        
-        .cta-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .cta-section p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
+       
+        .toc-number {
             display: inline-block;
-            padding: 16px 40px;
-            background: white;
+            width: 30px;
+            font-weight: 600;
             color: #6e40aa;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 500;
-            transition: all 0.3s ease;
         }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        /* Language-specific font optimization */
+        body.lang-ja {
+            font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
         }
-        
-        /* Back to Top */
-        .back-to-main {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #6e40aa;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(110, 64, 170, 0.3);
+        body.lang-zh {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
-        .back-to-main:hover {
-            background: #5a359a;
-            transform: translateY(-2px);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                margin-left: 0 !important;
-            }
-            
-            .process-timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-item::before {
-                left: 10px !important;
-                right: auto !important;
-            }
+        body.lang-en {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
     </style>
 </head>
 <body>
-    <!-- Service 1: AI脚本創作 -->
-    <div id="script-service" class="service-page">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">ブラックホールAI</div>
-                <ul class="nav-links">
-                    <li><a href="#" class="active">AI脚本創作</a></li>
-                    <li><a href="#budget-service">予算統括管理</a></li>
-                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
-                    <li><a href="#music-service">音楽プリプロダクション</a></li>
-                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
-                    <li><a href="#scene-service">シーン適応</a></li>
-                </ul>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-i18n="logo">ブラックホールAI</div>
+            <div class="language-switcher">
+                <button onclick="switchLanguage('zh')">中</button>
+                <button onclick="switchLanguage('ja')">日</button>
+                <button onclick="switchLanguage('en')">EN</button>
             </div>
-        </nav>
-
-        <section class="service-hero">
-            <h1>AI脚本創作サービス</h1>
-            <p>1つのブラックホールAIが20人の脚本家に相当<br>従来の3-6ヶ月の制作期間を1ヶ月未満に短縮</p>
-        </section>
-
-        <section class="service-content">
-            <div class="content-block">
-                <h2>革新的な脚本創作プロセス</h2>
-                <p>映画制作の出発点である脚本創作。従来は数ヶ月から1-2年かかるこのプロセスを、ブラックホールAIは劇的に短縮します。</p>
-                
-                <div class="process-timeline">
-                    <div class="timeline-item">
-                        <h4>第1週：アイデア展開</h4>
-                        <p>核心的なアイデアから20以上の異なる方向のストーリーアウトラインを生成</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>第2-3週：脚本評価会</h4>
-                        <p>1-2名の資深脚本家がAI生成案を評価し、最適な方向を選定</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>第4-6週：詳細脚本制作</h4>
-                        <p>選定された方向に基づき、3つ以上の詳細な脚本初稿を生成</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>第7-8週：人工精修</h4>
-                        <p>プロの脚本家による最終調整と芸術的昇華</p>
-                    </div>
+        </div>
+    </nav>
+    <!-- Cover Page -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="gradient-text" data-i18n="hero-title">ブラックホールAI</h1>
+            <p data-i18n="hero-subtitle">ワンストップAIコンテンツ生成機関<br>コスト削減、品質向上、ワンストップAI補助映像サービス</p>
+            <p style="margin-top: 60px; font-size: 16px; color: #999;" data-i18n="hero-description">
+                映画・映像制作向けAI統合ソリューション<br>
+                包括的サービスカタログ
+            </p>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Table of Contents -->
+    <div class="section">
+        <div class="toc">
+            <h2 data-i18n="toc-title">目次</h2>
+            <ul class="toc-list">
+                <li><span class="toc-number">1.</span> <span data-i18n="toc-1">会社概要とビジョン</span></li>
+                <li><span class="toc-number">2.</span> <span data-i18n="toc-2">コアサービス概要</span></li>
+                <li><span class="toc-number">3.</span> <span data-i18n="toc-3">AI脚本創作サービス</span></li>
+                <li><span class="toc-number">4.</span> <span data-i18n="toc-4">予算統括管理システム</span></li>
+                <li><span class="toc-number">5.</span> <span data-i18n="toc-5">AI絵コンテ設計</span></li>
+                <li><span class="toc-number">6.</span> <span data-i18n="toc-6">音楽プリプロダクション</span></li>
+                <li><span class="toc-number">7.</span> <span data-i18n="toc-7">特殊効果プレビズ制作</span></li>
+                <li><span class="toc-number">8.</span> <span data-i18n="toc-8">シーンスマート適応</span></li>
+                <li><span class="toc-number">9.</span> <span data-i18n="toc-9">盗作検出システム</span></li>
+                <li><span class="toc-number">10.</span> <span data-i18n="toc-10">実績とケーススタディ</span></li>
+                <li><span class="toc-number">11.</span> <span data-i18n="toc-11">コアチーム紹介</span></li>
+                <li><span class="toc-number">12.</span> <span data-i18n="toc-12">お問い合わせ</span></li>
+            </ul>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 1: Company Overview -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-1-title">1. 会社概要とビジョン</h2>
+       
+        <div class="service-detail">
+            <p data-i18n="section-1-p1">ブラックホールAIは、映画・映像制作業界に革命をもたらすAI統合ソリューションです。単なるソフトウェアではなく、AIテクノロジーに基づく包括的なサービスシステムとして、制作プロセス全体を支援します。</p>
+           
+            <h3 data-i18n="section-1-h3-1">私たちのミッション</h3>
+            <p data-i18n="section-1-p2">「中規模予算で大作品レベルの効果を実現」—— これが私たちの核心理念です。従来の映画制作では、優れた作品を作るために莫大な予算が必要でした。ブラックホールAIは、最先端のAI技術を活用することで、この常識を覆します。</p>
+           
+            <div class="quote-block">
+                <p data-i18n="section-1-quote">「従来の映画制作では脚本に最低3-6ヶ月必要でしたが、私たちは1ヶ月未満で完成させました。ブラックホールAIの真の実力は、強力な技術で個別のニーズに応えることです。」</p>
+                <div class="author" data-i18n="section-1-quote-author">— 映画producer（ブラックホールAIカスタマイズサービス初のクライアント）</div>
+            </div>
+           
+            <h3 data-i18n="section-1-h3-2">技術革新への取り組み</h3>
+            <p data-i18n="section-1-p3">私たちは、大規模言語モデルを基盤として、映画制作の各工程に特化したAIシステムを構築しました。これは単なる自動化ではなく、人間のクリエイティビティを最大限に引き出すための「知的パートナー」です。</p>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 2: Core Services Overview -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-2-title">2. コアサービス概要</h2>
+       
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3 data-i18n="service-1-title">AI脚本創作</h3>
+                <p data-i18n="service-1-desc">1つのブラックホールAIが20人のscreenwriterに相当。1週間で20以上のストーリーアウトライン、2ヶ月以内に脚本完成、screenwriterコストを70%削減</p>
+            </div>
+           
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 data-i18n="service-2-title">予算統括管理</h3>
+                <p data-i18n="service-2-desc">マルチエージェント動的制御、リソース変動をリアルタイム監視、自動最適化調整案、プロジェクト予算を最低30%削減</p>
+            </div>
+           
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3 data-i18n="service-3-title">AI絵コンテ設計</h3>
+                <p data-i18n="service-3-desc">1週間で2000枚の画稿を描画、あらゆる巨匠の視聴覚スタイルを模倣、30分で全シーンのstoryboard表を生成</p>
+            </div>
+           
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3 data-i18n="service-4-title">音楽プリプロダクション</h3>
+                <p data-i18n="service-4-desc">脚本段階で数百曲のスタイル化された楽曲を生成、20分でテーマソング制作完了、ポストプロダクションのコミュニケーションコストを大幅削減</p>
+            </div>
+           
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3 data-i18n="service-5-title">特殊効果pre-visualization制作</h3>
+                <p data-i18n="service-5-desc">プリプロダクションで特殊効果シーンのpre-visualizationを生成、高額なポストプロダクションのやり直しを回避、監督が最終効果を事前確認</p>
+            </div>
+           
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3 data-i18n="service-6-title">シーンスマート適応</h3>
+                <p data-i18n="service-6-desc">新しいシーンやキャラクター変更に自動適応、数時間で脚本調整完了、プリプロダクション会議を70%削減</p>
+            </div>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 3: AI Script Creation -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-3-title">3. AI脚本創作サービス</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-3-h3-1">革新的な脚本創作プロセス</h3>
+            <p data-i18n="section-3-p1">映画制作の出発点である脚本創作。従来は数ヶ月から1-2年かかるこのプロセスを、ブラックホールAIは劇的に短縮します。</p>
+           
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4 data-i18n="section-3-timeline-1-title">第1週：アイデア展開</h4>
+                    <p data-i18n="section-3-timeline-1-desc">核心的なアイデアから20以上の異なる方向のストーリーアウトラインを生成</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-i18n="section-3-timeline-2-title">第2-3週：脚本評価会</h4>
+                    <p data-i18n="section-3-timeline-2-desc">1-2名のプロscreenwriterがAI生成案を評価し、最適な方向を選定</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-i18n="section-3-timeline-3-title">第4-6週：詳細脚本制作</h4>
+                    <p data-i18n="section-3-timeline-3-desc">選定された方向に基づき、3つ以上の詳細な脚本初稿を生成</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-i18n="section-3-timeline-4-title">第7-8週：人工精修</h4>
+                    <p data-i18n="section-3-timeline-4-desc">プロのscreenwriterによる最終調整と芸術的昇華</p>
                 </div>
             </div>
-
-            <div class="content-block">
-                <h2>核心技術の優位性</h2>
-                <ul class="feature-list">
-                    <li>
-                        <span class="icon">🧠</span>
-                        <div class="content">
-                            <h4>心理学ベースの技術ライブラリ</h4>
-                            <p>既存の脚本ではなく、数万の映像制作技法知識グラフで学習。完全にオリジナルな創作を保証</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">👥</span>
-                        <div class="content">
-                            <h4>AI脚本監督という新職業</h4>
-                            <p>人間の脚本家がAIの主人となり、強力な人間性思考でAIを駆使する新しい協業モデル</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🔄</span>
-                        <div class="content">
-                            <h4>リアルタイム最適化</h4>
-                            <p>プロデューサーのフィードバックに基づき、AIが即座に脚本を調整・改善</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
+           
+            <h3 data-i18n="section-3-h3-2">核心技術の優位性</h3>
+            <ul>
+                <li><strong data-i18n="section-3-li-1-strong">心理学ベースの技術ライブラリ：</strong> <span data-i18n="section-3-li-1">既存の脚本ではなく、数万の映像制作技法知識グラフで学習。完全にオリジナルな創作を保証</span></li>
+                <li><strong data-i18n="section-3-li-2-strong">AI脚本監督という新職業：</strong> <span data-i18n="section-3-li-2">人間のscreenwriterがAIの主人となり、強力な人間性思考でAIを駆使する新しい協業モデル</span></li>
+                <li><strong data-i18n="section-3-li-3-strong">リアルタイム最適化：</strong> <span data-i18n="section-3-li-3">producerのフィードバックに基づき、AIが即座に脚本を調整・改善</span></li>
+            </ul>
+           
             <div class="case-study">
-                <h3>実績ケース：映画『悉達多』</h3>
-                <p>国際共同制作プロジェクトで、仏教哲学の深遠な思想を現代的視点で表現する挑戦</p>
-                <div class="highlight">20+ 視点</div>
-                <p>女性視点、現代青年視点、ファンタジー風など、多様な切り口の脚本アウトラインを生成</p>
-                <div class="highlight">70% コスト削減</div>
-                <p>脚本開発予算の約3分の2を節約し、より重要な制作部門に再配分</p>
+                <h3 data-i18n="section-3-case-h3">実績ケース：映画『悉達多』</h3>
+                <p data-i18n="section-3-case-p1">国際共同制作プロジェクトで、仏教哲学の深遠な思想を現代的視点で表現する挑戦</p>
+                <div class="highlight" data-i18n="section-3-highlight-1">20+ 視点</div>
+                <p data-i18n="section-3-case-p2">女性視点、現代青年視点、ファンタジー風など、多様な切り口の脚本アウトラインを生成</p>
+                <div class="highlight" data-i18n="section-3-highlight-2">70% コスト削減</div>
+                <p data-i18n="section-3-case-p3">脚本開発予算の約3分の2を節約し、より重要な制作部門に再配分</p>
             </div>
-
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 4: Budget Management -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-4-title">4. 予算統括管理システム</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-4-h3-1">映画制作の新しい管理パラダイム</h3>
+            <p data-i18n="section-4-p1">映画プロジェクト管理は空中で積み木を組み立てるような複雑さ。一つの調整が全体に影響します。ブラックホールAIの多次元予算コントローラーが、すべてのリソース変動をリアルタイムで監視・シミュレーションします。</p>
+           
+            <h3 data-i18n="section-4-h3-2">スマート調整の実例</h3>
+            <div class="case-study">
+                <h4 data-i18n="section-4-case-h4">主演俳優のスケジュール衝突への対応</h4>
+                <p data-i18n="section-4-case-p1"><strong data-i18n="section-4-case-strong-1">従来の問題点：</strong> <span data-i18n="section-4-case-span-1">全クルー待機、毎日コスト発生、または俳優交代による巨額損失</span></p>
+                <p data-i18n="section-4-case-p2"><strong data-i18n="section-4-case-strong-2">ブラックホールAIソリューション：</strong></p>
+                <ul>
+                    <li data-i18n="section-4-case-li-1">即時影響評価：スケジュール変更が各シーンに与える影響を瞬時に分析</li>
+                    <li data-i18n="section-4-case-li-2">最適撮影順序の再編成：代替シーンの先行撮影、スタンドイン使用の提案など</li>
+                    <li data-i18n="section-4-case-li-3">20以上のパラメータ総合計算：俳優スケジュール、ロケーション費用、天気予報など総合的に最適解を導出</li>
+                </ul>
+            </div>
+           
+            <h3 data-i18n="section-4-h3-3">マルチエージェント協業アーキテクチャ</h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h4 data-i18n="section-4-stat-1-h4">制作エージェント</h4>
+                    <p data-i18n="section-4-stat-1-p">撮影スケジュール、ロケーション管理、機材調達を最適化</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-4-stat-2-h4">財務エージェント</h4>
+                    <p data-i18n="section-4-stat-2-p">予算配分、キャッシュフロー管理、コスト予測を担当</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-4-stat-3-h4">環境エージェント</h4>
+                    <p data-i18n="section-4-stat-3-p">天候、季節、ロケーション条件を考慮した最適化</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 5: AI Storyboard Design -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-5-title">5. AI絵コンテ設計</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-5-h3-1">映画ビジュアルの革命</h3>
+            <p data-i18n="section-5-p1">従来2-6ヶ月以上かかる絵コンテ制作が「ワンクリック生成」の新時代へ。AIは任意の巨匠の視聴覚スタイルを模倣し、1週間で2000枚以上の高品質絵コンテを生産できます。</p>
+           
+            <h3 data-i18n="section-5-h3-2">巨匠スタイルライブラリ</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4 data-i18n="section-5-feature-1-h4">ヒッチコック</h4>
+                    <p data-i18n="section-5-feature-1-p">サスペンスの演出、独特のカメラアングルと構図</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-5-feature-2-h4">ベルイマン</h4>
+                    <p data-i18n="section-5-feature-2-p">心理的な絵コンテ、クローズアップと光影の運用</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-5-feature-3-h4">キューブリック</h4>
+                    <p data-i18n="section-5-feature-3-p">対称的な構図、独特の色調とビジュアルスタイル</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-5-feature-4-h4">タルコフスキー</h4>
+                    <p data-i18n="section-5-feature-4-p">詩的な映像言語、長回しと自然要素の融合</p>
+                </div>
+            </div>
+           
+            <h3 data-i18n="section-5-h3-3">技術的優位性</h3>
+            <div class="case-study">
+                <h4 data-i18n="section-5-case-h4-1">生成速度の突破</h4>
+                <div class="highlight" data-i18n="section-5-highlight-1">30分</div>
+                <p data-i18n="section-5-case-p1">1シーンの全storyboard表を完全生成</p>
+               
+                <h4 data-i18n="section-5-case-h4-2">柔軟な適応能力</h4>
+                <p data-i18n="section-5-case-p2">新しいロケーションや俳優変更への即時対応：</p>
+                <ul>
+                    <li data-i18n="section-5-case-li-1">新しいシーンの写真・動画素材を提供するだけで自動適応</li>
+                    <li data-i18n="section-5-case-li-2">俳優変更時のキャラクター設定と台詞の自動調整</li>
+                    <li data-i18n="section-5-case-li-3">70%以上のプリプロダクション会議時間を削減</li>
+                </ul>
+            </div>
+           
             <div class="quote-block">
-                <p>「従来の映画制作では脚本に最低3-6ヶ月必要でしたが、私たちは1ヶ月未満で完成させました。ブラックホールAIの真の実力は、強力な技術で個別のニーズに応えることです。」</p>
-                <div class="author">— 映画プロデューサー（ブラックホールAIカスタマイズサービス初のクライアント）</div>
+                <p data-i18n="section-5-quote">「私は模倣しない、私は盗む」— クエンティン・タランティーノ監督の言葉通り、巨匠たちの視聴覚言語を学ぶことは映画制作の本質です。</p>
             </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>AI脚本創作で新たな可能性を</h2>
-            <p>あなたのアイデアを最高の脚本に変換します</p>
-            <a href="#contact" class="cta-button">無料相談を予約</a>
-        </section>
+        </div>
     </div>
-
-    <!-- Service 2: 予算統括管理 -->
-    <div id="budget-service" class="service-page" style="display: none;">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">ブラックホールAI</div>
-                <ul class="nav-links">
-                    <li><a href="#script-service">AI脚本創作</a></li>
-                    <li><a href="#" class="active">予算統括管理</a></li>
-                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
-                    <li><a href="#music-service">音楽プリプロダクション</a></li>
-                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
-                    <li><a href="#scene-service">シーン適応</a></li>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 6: Music Pre-production -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-6-title">6. 音楽プリプロダクション</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-6-h3-1">映画音楽制作の新しいワークフロー</h3>
+            <p data-i18n="section-6-p1">従来、作曲家は映像編集完了後に音楽を創作していましたが、これは監督の音楽スタイルへの期待と最終成果物の不一致を引き起こす可能性があります。ブラックホールAIは「映画音楽プリプロダクション」サービスを提供し、脚本段階から大量のスタイル化された音楽を生成します。</p>
+           
+            <div class="case-study">
+                <h3 data-i18n="section-6-case-h3">実績ケース：没入型演劇『寂寞芳心小姐』</h3>
+                <div class="highlight" data-i18n="section-6-highlight">20分</div>
+                <p data-i18n="section-6-case-p1">SUNO4.5を使用してメインテーマ曲を完成</p>
+               
+                <h4 data-i18n="section-6-case-h4">プロジェクト成果：</h4>
+                <ul>
+                    <li data-i18n="section-6-case-li-1">100曲以上のオリジナル音楽フラグメントを生成</li>
+                    <li data-i18n="section-6-case-li-2">交響楽、電子音楽、民族音楽など多様なスタイルをカバー</li>
+                    <li data-i18n="section-6-case-li-3">監督が事前に音楽の方向性を確定でき、後期調整を大幅削減</li>
                 </ul>
             </div>
-        </nav>
-
-        <section class="service-hero">
-            <h1>予算統括管理システム</h1>
-            <p>マルチエージェント「スウォーム」システムで<br>プロジェクト予算を最低30%削減</p>
-        </section>
-
-        <section class="service-content">
-            <div class="content-block">
-                <h2>映画制作の新しい管理パラダイム</h2>
-                <p>映画プロジェクト管理は空中で積み木を組み立てるような複雑さ。一つの調整が全体に影響します。ブラックホールAIの多次元予算コントローラーが、すべてのリソース変動をリアルタイムで監視・シミュレーションします。</p>
-            </div>
-
-            <div class="content-block">
-                <h2>スマート調整の実例</h2>
-                <div class="case-study">
-                    <h3>主演俳優のスケジュール衝突への対応</h3>
-                    <p>従来：全クルー待機、毎日コスト発生、または俳優交代による巨額損失</p>
-                    <p><strong>ブラックホールAIソリューション：</strong></p>
-                    <ul class="feature-list">
-                        <li>
-                            <span class="icon">📊</span>
-                            <div class="content">
-                                <h4>即時影響評価</h4>
-                                <p>スケジュール変更が各シーンに与える影響を瞬時に分析</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">🔄</span>
-                            <div class="content">
-                                <h4>最適撮影順序の再編成</h4>
-                                <p>代替シーンの先行撮影、スタンドイン使用の提案など</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">💰</span>
-                            <div class="content">
-                                <h4>20以上のパラメータ総合計算</h4>
-                                <p>俳優スケジュール、ロケーション費用、天気予報など総合的に最適解を導出</p>
-                            </div>
-                        </li>
-                    </ul>
+           
+            <h3 data-i18n="section-6-h3-2">プロフェッショナルとの協業</h3>
+            <ul>
+                <li><strong data-i18n="section-6-li-1-strong">作曲家の創造性を尊重：</strong> <span data-i18n="section-6-li-1">AIは参考サンプルを提供し、プロの作曲家の創作時間を短縮</span></li>
+                <li><strong data-i18n="section-6-li-2-strong">感情基調の事前確定：</strong> <span data-i18n="section-6-li-2">メインメロディの感情的方向性、必要な楽器編成の特色を明確化</span></li>
+                <li><strong data-i18n="section-6-li-3-strong">反復コミュニケーションの削減：</strong> <span data-i18n="section-6-li-3">事前の方向性確定により、試行錯誤のコミュニケーションを回避</span></li>
+            </ul>
+           
+            <h3 data-i18n="section-6-h3-3">音楽スタイルカスタマイズ</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4 data-i18n="section-6-feature-1-h4">クラシック</h4>
+                    <p data-i18n="section-6-feature-1-p">オーケストラ編成、室内楽、独奏楽器など、映画の感情的ニーズに応じた古典音楽スタイル</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-6-feature-2-h4">電子音楽</h4>
+                    <p data-i18n="section-6-feature-2-p">シンセサイザー、アンビエント、テクノなど、現代的な雰囲気を作る電子音楽要素</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-6-feature-3-h4">民族音楽</h4>
+                    <p data-i18n="section-6-feature-3-p">各国の伝統楽器と音楽スタイル、ストーリーの文化的背景を強化</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-6-feature-4-h4">ハイブリッド</h4>
+                    <p data-i18n="section-6-feature-4-p">複数のスタイルを融合し、独特で革新的なサウンドスケープを創造</p>
                 </div>
             </div>
-
-            <div class="content-block">
-                <h2>マルチエージェント協業アーキテクチャ</h2>
-                <div class="service-tabs">
-                    <button class="tab-button active" onclick="showTab('agents')">エージェント構成</button>
-                    <button class="tab-button" onclick="showTab('benefits')">導入効果</button>
-                    <button class="tab-button" onclick="showTab('process')">実装プロセス</button>
-                </div>
-                
-                <div id="agents" class="tab-content active">
-                    <ul class="feature-list">
-                        <li>
-                            <span class="icon">🎬</span>
-                            <div class="content">
-                                <h4>制作エージェント</h4>
-                                <p>撮影スケジュール、ロケーション管理、機材調達を最適化</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">💵</span>
-                            <div class="content">
-                                <h4>財務エージェント</h4>
-                                <p>予算配分、キャッシュフロー管理、コスト予測を担当</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">🌤️</span>
-                            <div class="content">
-                                <h4>環境エージェント</h4>
-                                <p>天候、季節、ロケーション条件を考慮した最適化</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div id="benefits" class="tab-content">
-                    <ul class="feature-list">
-                        <li>
-                            <span class="icon">⚡</span>
-                            <div class="content">
-                                <h4>意思決定スピード向上</h4>
-                                <p>複雑な調整案を数分で生成、従来の数日から大幅短縮</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">🎯</span>
-                            <div class="content">
-                                <h4>リスク最小化</h4>
-                                <p>人為的ミスによる損失を回避、全体最適化を実現</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">📈</span>
-                            <div class="content">
-                                <h4>創造性の解放</h4>
-                                <p>管理業務から解放され、クリエイティブに集中可能</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div id="process" class="tab-content">
-                    <ol class="feature-list">
-                        <li>
-                            <span class="icon">1️⃣</span>
-                            <div class="content">
-                                <h4>プロジェクトデータ入力</h4>
-                                <p>脚本、予算、スケジュール、チーム情報をシステムに統合</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">2️⃣</span>
-                            <div class="content">
-                                <h4>AIモデリング</h4>
-                                <p>プロジェクト特性に基づくカスタムAIモデルの構築</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">3️⃣</span>
-                            <div class="content">
-                                <h4>リアルタイム最適化</h4>
-                                <p>制作期間中の継続的な監視と調整提案</p>
-                            </div>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>予算を最大限に活用</h2>
-            <p>AIの力で、限られた予算でも最高の作品を</p>
-            <a href="#contact" class="cta-button">デモを申し込む</a>
-        </section>
+        </div>
     </div>
-
-    <!-- Service 3: AI絵コンテ設計 -->
-    <div id="storyboard-service" class="service-page" style="display: none;">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">ブラックホールAI</div>
-                <ul class="nav-links">
-                    <li><a href="#script-service">AI脚本創作</a></li>
-                    <li><a href="#budget-service">予算統括管理</a></li>
-                    <li><a href="#" class="active">AI絵コンテ設計</a></li>
-                    <li><a href="#music-service">音楽プリプロダクション</a></li>
-                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
-                    <li><a href="#scene-service">シーン適応</a></li>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 7: VFX Pre-visualization -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-7-title">7. 特殊効果プレビズ制作</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-7-h3-1">VFXコスト管理の革命</h3>
+            <p data-i18n="section-7-p1">従来、複雑な特殊効果ショットは撮影後期に特効会社に委託して制作され、費用が高額で、効果が不満足な場合は再制作が必要でした。ブラックホールAIは仮想エンジンとグラフィック生成能力を活用し、前期段階で特効シーンのプレビズを生成できます。</p>
+           
+            <h3 data-i18n="section-7-h3-2">プレビズ制作の利点</h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h4 data-i18n="section-7-stat-1-h4">事前可視化</h4>
+                    <p data-i18n="section-7-stat-1-p">監督が撮影前に最終効果を確認し、創造的な調整が可能</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-7-stat-2-h4">コスト予測</h4>
+                    <p data-i18n="section-7-stat-2-p">正確な特効予算を事前に把握し、予算超過を回避</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-7-stat-3-h4">撮影効率</h4>
+                    <p data-i18n="section-7-stat-3-p">現場チームが特効ショットの要求を明確に理解</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-7-stat-4-h4">技術検証</h4>
+                    <p data-i18n="section-7-stat-4-p">複雑な特効の実現可能性を事前に検証</p>
+                </div>
+            </div>
+           
+            <h3 data-i18n="section-7-h3-3">対応可能な特効タイプ</h3>
+            <div class="case-study">
+                <h4 data-i18n="section-7-case-h4-1">環境効果</h4>
+                <ul>
+                    <li data-i18n="section-7-case-li-1-1">天候シミュレーション（雨、雪、霧、嵐）</li>
+                    <li data-i18n="section-7-case-li-1-2">自然災害（地震、津波、火山噴火）</li>
+                    <li data-i18n="section-7-case-li-1-3">宇宙・SF環境</li>
+                </ul>
+               
+                <h4 data-i18n="section-7-case-h4-2">キャラクター効果</h4>
+                <ul>
+                    <li data-i18n="section-7-case-li-2-1">デジタルダブル</li>
+                    <li data-i18n="section-7-case-li-2-2">クリーチャーデザイン</li>
+                    <li data-i18n="section-7-case-li-2-3">変身・変形効果</li>
+                </ul>
+               
+                <h4 data-i18n="section-7-case-h4-3">アクションシーケンス</h4>
+                <ul>
+                    <li data-i18n="section-7-case-li-3-1">爆発・破壊シーン</li>
+                    <li data-i18n="section-7-case-li-3-2">車両追跡</li>
+                    <li data-i18n="section-7-case-li-3-3">空中戦・宇宙戦</li>
                 </ul>
             </div>
-        </nav>
-
-        <section class="service-hero">
-            <h1>AI絵コンテ設計</h1>
-            <p>1週間で2000枚以上の高品質絵コンテを生成<br>巨匠の視覚スタイルを自在に再現</p>
-        </section>
-
-        <section class="service-content">
-            <div class="content-block">
-                <h2>映画ビジュアルの革命</h2>
-                <p>従来2-6ヶ月以上かかる絵コンテ制作が「ワンクリック生成」の新時代へ。AIは任意の巨匠の視聴覚スタイルを模倣し、1週間で2000枚以上の高品質絵コンテを生産できます。</p>
-            </div>
-
-            <div class="content-block">
-                <h2>巨匠スタイルライブラリ</h2>
-                <div class="feature-list">
-                    <li>
-                        <span class="icon">🎭</span>
-                        <div class="content">
-                            <h4>ヒッチコック</h4>
-                            <p>サスペンスの演出、独特のカメラアングルと構図</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🎨</span>
-                        <div class="content">
-                            <h4>ベルイマン</h4>
-                            <p>心理的な絵コンテ、クローズアップと光影の運用</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🏛️</span>
-                        <div class="content">
-                            <h4>キューブリック</h4>
-                            <p>対称的な構図、独特の色調とビジュアルスタイル</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🌌</span>
-                        <div class="content">
-                            <h4>タルコフスキー</h4>
-                            <p>詩的な映像言語、長回しと自然要素の融合</p>
-                        </div>
-                    </li>
+           
+            <h3 data-i18n="section-7-h3-4">制作プロセス</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4 data-i18n="section-7-timeline-1-title">コンセプトデザイン</h4>
+                    <p data-i18n="section-7-timeline-1-desc">脚本に基づき、特効シーンの初期コンセプトを開発</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-i18n="section-7-timeline-2-title">3Dモデリング</h4>
+                    <p data-i18n="section-7-timeline-2-desc">必要な3D要素とアセットを構築</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-i18n="section-7-timeline-3-title">アニメーション制作</h4>
+                    <p data-i18n="section-7-timeline-3-desc">動きとタイミングを設定し、基本的なアニメーションを作成</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-i18n="section-7-timeline-4-title">レンダリング出力</h4>
+                    <p data-i18n="section-7-timeline-4-desc">高品質のプレビズ映像を生成し、評価用に提供</p>
                 </div>
             </div>
-
-            <div class="content-block">
-                <h2>技術的優位性</h2>
-                <div class="case-study">
-                    <h3>生成速度の突破</h3>
-                    <div class="highlight">30分</div>
-                    <p>1シーンの全絵コンテ表を完全生成</p>
-                    
-                    <h3>柔軟な適応能力</h3>
-                    <p>新しいロケーションや俳優変更への即時対応：</p>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 8: Scene Smart Adaptation -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-8-title">8. シーンスマート適応</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-8-h3-1">制作の柔軟性を最大化</h3>
+            <p data-i18n="section-8-p1">従来の制作プロセスでは、撮影前に監督が新しいロケーションを気に入った場合、脚本家が数日かけて脚本を修正する必要がありました。ブラックホールAIのマルチモーダル適応能力により、これらの調整は数時間で自動完了します。</p>
+           
+            <h3 data-i18n="section-8-h3-2">適応能力の実例</h3>
+            <div class="case-study">
+                <h4 data-i18n="section-8-case-h4-1">ロケーション変更への対応</h4>
+                <p data-i18n="section-8-case-p1">監督が新しいロケーションの写真や動画を提供するだけで：</p>
+                <ul>
+                    <li data-i18n="section-8-case-li-1-1">AIが視覚的特徴を解析</li>
+                    <li data-i18n="section-8-case-li-1-2">対応するシーンのストーリーと絵コンテを再生成</li>
+                    <li data-i18n="section-8-case-li-1-3">脚本、ショットと新しいロケーションの完璧な融合を確保</li>
+                </ul>
+               
+                <h4 data-i18n="section-8-case-h4-2">俳優交代への対応</h4>
+                <p data-i18n="section-8-case-p2">新しい俳優の基本特徴を入力するだけで：</p>
+                <ul>
+                    <li data-i18n="section-8-case-li-2-1">キャラクターの台詞と設定詳細を自動調整</li>
+                    <li data-i18n="section-8-case-li-2-2">新俳優バージョンの脚本と絵コンテを生成</li>
+                    <li data-i18n="section-8-case-li-2-3">キャラクターの一貫性と信憑性を維持</li>
+                </ul>
+            </div>
+           
+            <h3 data-i18n="section-8-h3-3">導入効果</h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="highlight" data-i18n="section-8-highlight-1">70%</div>
+                    <p data-i18n="section-8-stat-1-p">会議時間削減</p>
+                </div>
+                <div class="stat-item">
+                    <div class="highlight" data-i18n="section-8-highlight-2">90%</div>
+                    <p data-i18n="section-8-stat-2-p">再撮影率減少</p>
+                </div>
+            </div>
+           
+            <h3 data-i18n="section-8-h3-4">スマート適応プロセス</h3>
+            <ol>
+                <li><strong data-i18n="section-8-ol-1-strong">素材入力：</strong> <span data-i18n="section-8-ol-1">新しいロケーションや俳優の画像/動画素材を提供</span></li>
+                <li><strong data-i18n="section-8-ol-2-strong">AI分析：</strong> <span data-i18n="section-8-ol-2">視覚特徴、空間構造、光線条件などを総合分析</span></li>
+                <li><strong data-i18n="section-8-ol-3-strong">自動調整：</strong> <span data-i18n="section-8-ol-3">脚本、絵コンテ、撮影計画を新しい条件に合わせて最適化</span></li>
+                <li><strong data-i18n="section-8-ol-4-strong">人工確認：</strong> <span data-i18n="section-8-ol-4">監督とproducerが最終調整案を確認・承認</span></li>
+            </ol>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 9: Plagiarism Detection System -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-9-title">9. 独自の脚本盗作検出システム</h2>
+       
+        <div class="plagiarism-section">
+            <div class="plagiarism-content">
+                <h2 data-i18n="plagiarism-h2">完全オリジナル創作の保証</h2>
+                <p data-i18n="plagiarism-p">既存の脚本ライブラリではなく、心理学に基づく数万のテクニックライブラリで学習<br>根本から盗作リスクを回避し、あなたの創造的な著作権を保護</p>
+            </div>
+        </div>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-9-h3-1">技術的アプローチ</h3>
+            <p data-i18n="section-9-p1">ブラックホールAIの訓練方式は革新的です。直接脚本で訓練するのではなく、数万条の映像技法知識グラフを使用。これは人間の脚本家が技法を学ぶプロセスと同じで、AIがより速く学習するだけです。</p>
+           
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4 data-i18n="section-9-feature-1-h4">テクニックライブラリ学習</h4>
+                    <p data-i18n="section-9-feature-1-p">既存の脚本を使用せず、映像制作テクニックのナレッジグラフに基づく</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-9-feature-2-h4">オリジナリティ保証</h4>
+                    <p data-i18n="section-9-feature-2-p">すべての脚本は新規作成、著作権紛争を完全に回避</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-9-feature-3-h4">スマート盗作検出</h4>
+                    <p data-i18n="section-9-feature-3-p">類似度をリアルタイム検出、作品の独自性を確保</p>
+                </div>
+                <div class="feature-card">
+                    <h4 data-i18n="section-9-feature-4-h4">著作権保護</h4>
+                    <p data-i18n="section-9-feature-4-p">あなたの創造性に完全な著作権保護ソリューションを提供</p>
+                </div>
+            </div>
+           
+            <h3 data-i18n="section-9-h3-2">著作権への配慮</h3>
+            <p data-i18n="section-9-p2">映画史において「絵コンテスタイル」の著作権は存在しません。人類は常に巨匠の視聴覚言語を学び、個性的に組み合わせて新しい表現を生み出してきました。AIはこのプロセスをより効率的にするだけです。</p>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 10: Case Studies -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-10-title">10. 実績とケーススタディ</h2>
+       
+        <div class="service-detail">
+            <h3 data-i18n="section-10-h3-1">ケース1：映画『少年行』</h3>
+            <div class="case-study">
+                <p data-i18n="section-10-case-1-p1">青少年の軍事訓練キャンプでの成長を描く中規模予算の作品。ストーリー概要から撮影完了まで僅か2ヶ月。</p>
+               
+                <h4 data-i18n="section-10-case-1-h4-1">挑戦</h4>
+                <p data-i18n="section-10-case-1-p2">脚本家は複数の少年の心理変化を深く描写する必要があったが、心理学の専門知識がなく、独学では半年以上かかる見込みだった。</p>
+               
+                <h4 data-i18n="section-10-case-1-h4-2">ソリューション</h4>
+                <p data-i18n="section-10-case-1-p3">ブラックホールAIが膨大な「発達心理学」知識ベースを導入。AIが各少年キャラクターの詳細な心理状態レポートと発達軌跡を提供。</p>
+               
+                <h4 data-i18n="section-10-case-1-h4-3">成果</h4>
+                <ul>
+                    <li data-i18n="section-10-case-1-li-1">脚本開発期間を予定の半分に短縮</li>
+                    <li data-i18n="section-10-case-1-li-2">関連調査の人件費を50%以上削減</li>
+                    <li data-i18n="section-10-case-1-li-3">キャラクター描写の深さと真実性が大幅向上</li>
+                </ul>
+            </div>
+           
+            <h3 data-i18n="section-10-h3-2">ケース2：映画『悉達多』</h3>
+            <div class="case-study">
+                <p data-i18n="section-10-case-2-p1">仏陀悉達多の思想が現代生活に与える影響を描く国際共同制作作品。</p>
+               
+                <h4 data-i18n="section-10-case-2-h4-1">挑戦</h4>
+                <p data-i18n="section-10-case-2-p2">深遠な仏教哲学を一般観客の視点でどう解釈するか</p>
+               
+                <h4 data-i18n="section-10-case-2-h4-2">ソリューション</h4>
+                <p data-i18n="section-10-case-2-p3">ブラックホールAIチームが専門の「仏学」知識データベースを構築。AIが異なる視点から悉達多の物語を語るよう要求。</p>
+               
+                <h4 data-i18n="section-10-case-2-h4-3">驚きの成果</h4>
+                <div class="highlight" data-i18n="section-10-highlight-1">20+</div>
+                <p data-i18n="section-10-case-2-p4">異なる視点、スタイルの完全な脚本アウトライン</p>
+               
+                <ul>
+                    <li data-i18n="section-10-case-2-li-1">女性視点バージョン</li>
+                    <li data-i18n="section-10-case-2-li-2">現代国際青年視点での仏理解釈バージョン</li>
+                    <li data-i18n="section-10-case-2-li-3">ファンタジー色彩、リアリズムなど多様なタイプ</li>
+                </ul>
+               
+                <h4 data-i18n="section-10-case-2-h4-4">最終成果</h4>
+                <ul>
+                    <li data-i18n="section-10-case-2-li-4">脚本コストを70%以上削減</li>
+                    <li data-i18n="section-10-case-2-li-5">節約した予算を美術、宣伝など重要部門に再配分</li>
+                    <li data-i18n="section-10-case-2-li-6">AIが繰り返し作業を担当し、人間クリエイターが真の芸術創作に集中</li>
+                </ul>
+            </div>
+           
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h4 data-i18n="section-10-stat-1-h4">30%+</h4>
+                    <p data-i18n="section-10-stat-1-p">平均予算削減</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-10-stat-2-h4">70%</h4>
+                    <p data-i18n="section-10-stat-2-p">脚本制作効率向上</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-10-stat-3-h4">2000+</h4>
+                    <p data-i18n="section-10-stat-3-p">週間絵コンテ生産量</p>
+                </div>
+                <div class="stat-item">
+                    <h4 data-i18n="section-10-stat-4-h4">2ヶ月</h4>
+                    <p data-i18n="section-10-stat-4-p">脚本完成サイクル</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 11: Core Team -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-11-title">11. コアチーム紹介</h2>
+       
+        <div class="service-detail">
+            <p data-i18n="section-11-p1">ブラックホールAIのコア研究開発チームは、学術エリートとアーティストが共同で技術プロセスを開発しており、未来の人類協力の方向性を示しています。</p>
+           
+            <div class="team-grid">
+                <div class="team-member">
+                    <h4 data-i18n="section-11-team-1-h4">宋慧桐（ソン・フイトン）</h4>
+                    <p class="role" data-i18n="section-11-team-1-role">投資管理</p>
+                    <p data-i18n="section-11-team-1-p">博士、映像技術専門家、20年以上の業界経験、豪州上場企業Atomos元共同創業者、マカオ科技大学博士、ブラックホールAIプロジェクトのエンジェル投資家</p>
+                </div>
+               
+                <div class="team-member">
+                    <h4 data-i18n="section-11-team-2-h4">Kurt（カート）</h4>
+                    <p class="role" data-i18n="section-11-team-2-role">基盤アーキテクチャ設計</p>
+                    <p data-i18n="section-11-team-2-p">博士、SC映画学院創設者、20年近い映像教育・脚本・監督経験。北京電影学院撮影学科修士、マカオ科技大学映画管理博士。博士2年次に特別に教員として採用され4年間教鞭を執る</p>
+                </div>
+               
+                <div class="team-member">
+                    <h4 data-i18n="section-11-team-3-h4">陳燕升（チェン・イェンシェン）</h4>
+                    <p class="role" data-i18n="section-11-team-3-role">チーフテクニカルエキスパート</p>
+                    <p data-i18n="section-11-team-3-p">博士、研究員、AI上級エンジニア、博士課程指導教員、広東・香港・マカオ大湾区AI産業シンクタンク専門家、グローバルトップ1%ESI高被引用論文著者、15件の人工知能特許を保有</p>
+                </div>
+               
+                <div class="team-member">
+                    <h4 data-i18n="section-11-team-4-h4">宣孟陽（シュアン・モンヤン）</h4>
+                    <p class="role" data-i18n="section-11-team-4-role">技術応用実装</p>
+                    <p data-i18n="section-11-team-4-p">博士、天津工業大学材料科学・コンピュータ専攻、北京電影学院撮影学科修士、清華美術学院情報芸術設計博士。現在ブラックホールAIの教育研修および清華系の後輩とスマートグラスプロジェクトを共同開発中</p>
+                </div>
+            </div>
+           
+            <h3 data-i18n="section-11-h3">専門家顧問団</h3>
+            <p data-i18n="section-11-p2">ブラックホールAIは2つの異なる分野の専門家顧問団を擁しています：</p>
+           
+            <ul>
+                <li><strong data-i18n="section-11-li-1-strong">技術顧問：</strong> <span data-i18n="section-11-li-1">清華大学コンピュータ専攻卒業、現在香港・マカオの著名大学教授、博士課程指導教員</span></li>
+                <li><strong data-i18n="section-11-li-2-strong">業界顧問：</strong>
                     <ul>
-                        <li>新しいシーンの写真・動画素材を提供するだけで自動適応</li>
-                        <li>俳優変更時のキャラクター設定と台詞の自動調整</li>
-                        <li>70%以上のプリプロダクション会議時間を削減</li>
+                        <li data-i18n="section-11-subli-1">金基德（国際的著名screenwriter/監督、故人）</li>
+                        <li data-i18n="section-11-subli-2">イカ（米国籍オランダ人監督、『断電的城市』監督、故人）</li>
+                        <li data-i18n="section-11-subli-3">丁建国（畢贛監督の師匠、『路辺野餐』投資家・producer）</li>
+                        <li data-i18n="section-11-subli-4">周智勇（『中国合伙人』screenwriter）</li>
+                        <li data-i18n="section-11-subli-5">陳漢（映画『赤壁』screenwriter）</li>
                     </ul>
-                </div>
-            </div>
-
+                </li>
+            </ul>
+           
             <div class="quote-block">
-                <p>「私は模倣しない、私は盗む」— クエンティン・タランティーノ監督の言葉通り、巨匠たちの視聴覚言語を学ぶことは映画制作の本質です。ブラックホールAIはこの学習プロセスを加速させます。</p>
+                <p data-i18n="section-11-quote">「ブラックホールAIは単なるソフトウェアではなく、専門家チームが大規模言語モデルを技術基盤として構築したサービスシステムです。彼らは映画業界だけでなく、システム構築の考え方で各分野にサービスを提供できます。」</p>
             </div>
-
-            <div class="content-block">
-                <h2>著作権への配慮</h2>
-                <p>映画史において「絵コンテスタイル」の著作権は存在しません。人類は常に巨匠の視聴覚言語を学び、個性的に組み合わせて新しい表現を生み出してきました。AIはこのプロセスをより効率的にするだけです。</p>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>ビジュアルストーリーテリングの新次元へ</h2>
-            <p>あなたの映像ビジョンを完璧に具現化</p>
-            <a href="#contact" class="cta-button">サンプルを見る</a>
-        </section>
+        </div>
     </div>
-
-    <!-- Service 4: 音楽プリプロダクション -->
-    <div id="music-service" class="service-page" style="display: none;">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">ブラックホールAI</div>
-                <ul class="nav-links">
-                    <li><a href="#script-service">AI脚本創作</a></li>
-                    <li><a href="#budget-service">予算統括管理</a></li>
-                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
-                    <li><a href="#" class="active">音楽プリプロダクション</a></li>
-                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
-                    <li><a href="#scene-service">シーン適応</a></li>
-                </ul>
+   
+    <div class="page-break"></div>
+   
+    <!-- Section 12: Contact -->
+    <div class="section">
+        <h2 class="section-title" data-i18n="section-12-title">12. お問い合わせ</h2>
+       
+        <div class="service-detail" style="text-align: center;">
+            <h3 data-i18n="section-12-h3">AI映画制作の新時代を開く</h3>
+            <p style="font-size: 20px; margin: 40px 0;" data-i18n="section-12-p1">豆瓣8点以上の作品または興行収入10億以上の商業作品の<br>クリエイターとの協業を歓迎します</p>
+           
+            <div class="quote-block" style="max-width: 600px; margin: 60px auto;">
+                <p data-i18n="section-12-quote">「私たちは2ヶ月の公開テスト後、どのプラットフォームにも公開しないことを決定し、カスタムプロジェクトとして映画サービスを推進することにしました。AIは本当に多くのクリエイターの失業を引き起こす可能性があり、私たちはそのような結果を望んでいません。しかし、優秀なクリエイターとの協力を心から歓迎します。」</p>
+                <div class="author" data-i18n="section-12-author">— ブラックホールAIチーム</div>
             </div>
-        </nav>
-
-        <section class="service-hero">
-            <h1>音楽プリプロダクション</h1>
-            <p>脚本段階で数百曲のスタイル音楽を生成<br>20分でテーマソング完成、ポストプロダクションコストを大幅削減</p>
-        </section>
-
-        <section class="service-content">
-            <div class="content-block">
-                <h2>映画音楽制作の新しいワークフロー</h2>
-                <p>従来、作曲家は映像編集完了後に音楽を創作していましたが、これは監督の音楽スタイルへの期待と最終成果物の不一致を引き起こす可能性があります。ブラックホールAIは「映画音楽プリプロダクション」サービスを提供し、脚本段階から大量のスタイル化された音楽を生成します。</p>
+           
+            <div style="margin-top: 60px;">
+                <h4 data-i18n="section-12-h4-1">協業条件</h4>
+                <p data-i18n="section-12-p2">豆瓣8点以上の映画作品または興行収入10億以上の商業作品の<br>screenwriter、監督、producer、出品者の方々</p>
             </div>
-
-            <div class="content-block">
-                <h2>実績ケース</h2>
-                <div class="case-study">
-                    <h3>没入型演劇『寂寞芳心小姐』</h3>
-                    <div class="highlight">20分</div>
-                    <p>SUNO4.5を使用してメインテーマ曲を完成</p>
-                    
-                    <p>プロジェクト完了後の成果：</p>
-                    <ul>
-                        <li>100曲以上のオリジナル音楽フラグメントを生成</li>
-                        <li>交響楽、電子音楽、民族音楽など多様なスタイルをカバー</li>
-                        <li>監督が事前に音楽の方向性を確定でき、後期調整を大幅削減</li>
-                    </ul>
-                </div>
+           
+            <div style="margin-top: 60px; padding: 40px; background: #f5f5f7; border-radius: 20px;">
+                <h4 data-i18n="section-12-h4-2">連絡先</h4>
+                <p data-i18n="section-12-p3">詳細なご相談は、アシスタントのWeChatまでご連絡ください</p>
+                <p style="margin-top: 20px;">
+                    <strong data-i18n="contact-email-strong">Email:</strong> <span data-i18n="contact-email">kurtsun2201@gmail.com</span><br>
+                    <strong data-i18n="contact-wechat-strong">WeChat:</strong> <span data-i18n="contact-wechat">sczhujiao</span>
+                </p>
             </div>
-
-            <div class="content-block">
-                <h2>プロフェッショナルとの協業</h2>
-                <ul class="feature-list">
-                    <li>
-                        <span class="icon">🎼</span>
-                        <div class="content">
-                            <h4>作曲家の創造性を尊重</h4>
-                            <p>AIは参考サンプルを提供し、プロの作曲家の創作時間を短縮</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🎵</span>
-                        <div class="content">
-                            <h4>感情基調の事前確定</h4>
-                            <p>メインメロディの感情的方向性、必要な楽器編成の特色を明確化</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🔄</span>
-                        <div class="content">
-                            <h4>反復コミュニケーションの削減</h4>
-                            <p>事前の方向性確定により、試行錯誤のコミュニケーションを回避</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="content-block">
-                <h2>音楽スタイルカスタマイズ</h2>
-                <div class="service-tabs">
-                    <button class="tab-button active" onclick="showMusicTab('classical')">クラシック</button>
-                    <button class="tab-button" onclick="showMusicTab('electronic')">電子音楽</button>
-                    <button class="tab-button" onclick="showMusicTab('ethnic')">民族音楽</button>
-                    <button class="tab-button" onclick="showMusicTab('hybrid')">ハイブリッド</button>
-                </div>
-                
-                <div id="classical" class="tab-content active">
-                    <p>オーケストラ編成、室内楽、独奏楽器など、映画の感情的ニーズに応じた古典音楽スタイル</p>
-                </div>
-                
-                <div id="electronic" class="tab-content">
-                    <p>シンセサイザー、アンビエント、テクノなど、現代的な雰囲気を作る電子音楽要素</p>
-                </div>
-                
-                <div id="ethnic" class="tab-content">
-                    <p>各国の伝統楽器と音楽スタイル、ストーリーの文化的背景を強化</p>
-                </div>
-                
-                <div id="hybrid" class="tab-content">
-                    <p>複数のスタイルを融合し、独特で革新的なサウンドスケープを創造</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>完璧な音楽体験を創造</h2>
-            <p>あなたの映画に最適な音楽ソリューション</p>
-            <a href="#contact" class="cta-button">音楽サンプルを聴く</a>
-        </section>
+           
+            <p style="margin-top: 80px; font-size: 14px; color: #999;" data-i18n="footer">
+                © 2024 ブラックホールAI. All rights reserved.<br>
+                中国映画を新たな段階へ導くために共に努力しましょう
+            </p>
+        </div>
     </div>
-
-    <!-- Service 5: 特殊効果プレビズ制作 -->
-    <div id="vfx-service" class="service-page" style="display: none;">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">ブラックホールAI</div>
-                <ul class="nav-links">
-                    <li><a href="#script-service">AI脚本創作</a></li>
-                    <li><a href="#budget-service">予算統括管理</a></li>
-                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
-                    <li><a href="#music-service">音楽プリプロダクション</a></li>
-                    <li><a href="#" class="active">特殊効果プレビズ</a></li>
-                    <li><a href="#scene-service">シーン適応</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <section class="service-hero">
-            <h1>特殊効果プレビズ制作</h1>
-            <p>撮影前に最終効果を確認<br>高額な後期やり直しを完全回避</p>
-        </section>
-
-        <section class="service-content">
-            <div class="content-block">
-                <h2>VFXコスト管理の革命</h2>
-                <p>従来、複雑な特殊効果ショットは撮影後期に特効会社に委託して制作され、費用が高額で、効果が不満足な場合は再制作が必要でした。ブラックホールAIは仮想エンジンとグラフィック生成能力を活用し、前期段階で特効シーンのプレビズを生成できます。</p>
-            </div>
-
-            <div class="content-block">
-                <h2>プレビズ制作の利点</h2>
-                <div class="feature-list">
-                    <li>
-                        <span class="icon">👁️</span>
-                        <div class="content">
-                            <h4>事前可視化</h4>
-                            <p>監督が撮影前に最終効果を確認し、創造的な調整が可能</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">💰</span>
-                        <div class="content">
-                            <h4>コスト予測の正確性</h4>
-                            <p>正確な特効予算を事前に把握し、予算超過を回避</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🎬</span>
-                        <div class="content">
-                            <h4>撮影効率の向上</h4>
-                            <p>現場チームが特効ショットの要求を明確に理解</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🔧</span>
-                        <div class="content">
-                            <h4>技術的検証</h4>
-                            <p>複雑な特効の実現可能性を事前に検証</p>
-                        </div>
-                    </li>
-                </div>
-            </div>
-
-            <div class="content-block">
-                <h2>対応可能な特効タイプ</h2>
-                <div class="case-study">
-                    <h3>環境効果</h3>
-                    <ul>
-                        <li>天候シミュレーション（雨、雪、霧、嵐）</li>
-                        <li>自然災害（地震、津波、火山噴火）</li>
-                        <li>宇宙・SF環境</li>
-                    </ul>
-                    
-                    <h3>キャラクター効果</h3>
-                    <ul>
-                        <li>デジタルダブル</li>
-                        <li>クリーチャーデザイン</li>
-                        <li>変身・変形効果</li>
-                    </ul>
-                    
-                    <h3>アクションシーケンス</h3>
-                    <ul>
-                        <li>爆発・破壊シーン</li>
-                        <li>車両追跡</li>
-                        <li>空中戦・宇宙戦</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="content-block">
-                <h2>制作プロセス</h2>
-                <div class="process-timeline">
-                    <div class="timeline-item">
-                        <h4>コンセプトデザイン</h4>
-                        <p>脚本に基づき、特効シーンの初期コンセプトを開発</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>3Dモデリング</h4>
-                        <p>必要な3D要素とアセットを構築</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>アニメーション制作</h4>
-                        <p>動きとタイミングを設定し、基本的なアニメーションを作成</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>レンダリング出力</h4>
-                        <p>高品質のプレビズ映像を生成し、評価用に提供</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>ビジュアルの限界を突破</h2>
-            <p>想像を現実に変える特殊効果ソリューション</p>
-            <a href="#contact" class="cta-button">プレビズサンプルを見る</a>
-        </section>
-    </div>
-
-    <!-- Service 6: シーンスマート適応 -->
-    <div id="scene-service" class="service-page" style="display: none;">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">ブラックホールAI</div>
-                <ul class="nav-links">
-                    <li><a href="#script-service">AI脚本創作</a></li>
-                    <li><a href="#budget-service">予算統括管理</a></li>
-                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
-                    <li><a href="#music-service">音楽プリプロダクション</a></li>
-                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
-                    <li><a href="#" class="active">シーン適応</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <section class="service-hero">
-            <h1>シーンスマート適応</h1>
-            <p>新しいロケーションと俳優変更に自動対応<br>数時間で脚本調整を完了</p>
-        </section>
-
-        <section class="service-content">
-            <div class="content-block">
-                <h2>制作の柔軟性を最大化</h2>
-                <p>従来の制作プロセスでは、撮影前に監督が新しいロケーションを気に入った場合、脚本家が数日かけて脚本を修正する必要がありました。ブラックホールAIのマルチモーダル適応能力により、これらの調整は数時間で自動完了します。</p>
-            </div>
-
-            <div class="content-block">
-                <h2>適応能力の実例</h2>
-                <div class="case-study">
-                    <h3>ロケーション変更への対応</h3>
-                    <p>監督が新しいロケーションの写真や動画を提供するだけで：</p>
-                    <ul>
-                        <li>AIが視覚的特徴を解析</li>
-                        <li>対応するシーンのストーリーと絵コンテを再生成</li>
-                        <li>脚本、ショットと新しいロケーションの完璧な融合を確保</li>
-                    </ul>
-                    
-                    <h3>俳優交代への対応</h3>
-                    <p>新しい俳優の基本特徴を入力するだけで：</p>
-                    <ul>
-                        <li>キャラクターの台詞と設定詳細を自動調整</li>
-                        <li>新俳優バージョンの脚本と絵コンテを生成</li>
-                        <li>キャラクターの一貫性と信憑性を維持</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="content-block">
-                <h2>導入効果</h2>
-                <div class="highlight">70%削減</div>
-                <p>プリプロダクション会議のコミュニケーション時間</p>
-                
-                <div class="highlight">90%減少</div>
-                <p>脚本とロケーション不一致による再撮影率</p>
-                
-                <p>AIにより「脚本の現実適応」が前例のない効率性と科学性を実現しました。</p>
-            </div>
-
-            <div class="content-block">
-                <h2>スマート適応プロセス</h2>
-                <ul class="feature-list">
-                    <li>
-                        <span class="icon">📸</span>
-                        <div class="content">
-                            <h4>素材入力</h4>
-                            <p>新しいロケーションや俳優の画像/動画素材を提供</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">🤖</span>
-                        <div class="content">
-                            <h4>AI分析</h4>
-                            <p>視覚特徴、空間構造、光線条件などを総合分析</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">✏️</span>
-                        <div class="content">
-                            <h4>自動調整</h4>
-                            <p>脚本、絵コンテ、撮影計画を新しい条件に合わせて最適化</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">✅</span>
-                        <div class="content">
-                            <h4>人工確認</h4>
-                            <p>監督とプロデューサーが最終調整案を確認・承認</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>制作の自由度を最大限に</h2>
-            <p>変化に素早く対応し、創造性を制限しない</p>
-            <a href="#contact" class="cta-button">詳細を問い合わせる</a>
-        </section>
-    </div>
-
-    <!-- Back to Main Button -->
-    <a href="index.html" class="back-to-main">↩</a>
-
     <script>
-        // Tab switching function
-        function showTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabId).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
+        const translations = {
+            ja: {
+                "page-title": "ブラックホールAI - ワンストップAIコンテンツ生成機関",
+                "logo": "ブラックホールAI",
+                "hero-title": "ブラックホールAI",
+                "hero-subtitle": "ワンストップAIコンテンツ生成機関<br>コスト削減、品質向上、ワンストップAI補助映像サービス",
+                "hero-description": "映画・映像制作向けAI統合ソリューション<br>包括的サービスカタログ",
+                "toc-title": "目次",
+                "toc-1": "会社概要とビジョン",
+                "toc-2": "コアサービス概要",
+                "toc-3": "AI脚本創作サービス",
+                "toc-4": "予算統括管理システム",
+                "toc-5": "AI絵コンテ設計",
+                "toc-6": "音楽プリプロダクション",
+                "toc-7": "特殊効果プレビズ制作",
+                "toc-8": "シーンスマート適応",
+                "toc-9": "盗作検出システム",
+                "toc-10": "実績とケーススタディ",
+                "toc-11": "コアチーム紹介",
+                "toc-12": "お問い合わせ",
+                "section-1-title": "1. 会社概要とビジョン",
+                "section-1-p1": "ブラックホールAIは、映画・映像制作業界に革命をもたらすAI統合ソリューションです。単なるソフトウェアではなく、AIテクノロジーに基づく包括的なサービスシステムとして、制作プロセス全体を支援します。",
+                "section-1-h3-1": "私たちのミッション",
+                "section-1-p2": "「中規模予算で大作品レベルの効果を実現」—— これが私たちの核心理念です。従来の映画制作では、優れた作品を作るために莫大な予算が必要でした。ブラックホールAIは、最先端のAI技術を活用することで、この常識を覆します。",
+                "section-1-quote": "「従来の映画制作では脚本に最低3-6ヶ月必要でしたが、私たちは1ヶ月未満で完成させました。ブラックホールAIの真の実力は、強力な技術で個別のニーズに応えることです。」",
+                "section-1-quote-author": "— 映画producer（ブラックホールAIカスタマイズサービス初のクライアント）",
+                "section-1-h3-2": "技術革新への取り組み",
+                "section-1-p3": "私たちは、大規模言語モデルを基盤として、映画制作の各工程に特化したAIシステムを構築しました。これは単なる自動化ではなく、人間のクリエイティビティを最大限に引き出すための「知的パートナー」です。",
+                "section-2-title": "2. コアサービス概要",
+                "service-1-title": "AI脚本創作",
+                "service-1-desc": "1つのブラックホールAIが20人のscreenwriterに相当。1週間で20以上のストーリーアウトライン、2ヶ月以内に脚本完成、screenwriterコストを70%削減",
+                "service-2-title": "予算統括管理",
+                "service-2-desc": "マルチエージェント動的制御、リソース変動をリアルタイム監視、自動最適化調整案、プロジェクト予算を最低30%削減",
+                "service-3-title": "AI絵コンテ設計",
+                "service-3-desc": "1週間で2000枚の画稿を描画、あらゆる巨匠の視聴覚スタイルを模倣、30分で全シーンのstoryboard表を生成",
+                "service-4-title": "音楽プリプロダクション",
+                "service-4-desc": "脚本段階で数百曲のスタイル化された楽曲を生成、20分でテーマソング制作完了、ポストプロダクションのコミュニケーションコストを大幅削減",
+                "service-5-title": "特殊効果pre-visualization制作",
+                "service-5-desc": "プリプロダクションで特殊効果シーンのpre-visualizationを生成、高額なポストプロダクションのやり直しを回避、監督が最終効果を事前確認",
+                "service-6-title": "シーンスマート適応",
+                "service-6-desc": "新しいシーンやキャラクター変更に自動適応、数時間で脚本調整完了、プリプロダクション会議を70%削減",
+                "section-3-title": "3. AI脚本創作サービス",
+                "section-3-h3-1": "革新的な脚本創作プロセス",
+                "section-3-p1": "映画制作の出発点である脚本創作。従来は数ヶ月から1-2年かかるこのプロセスを、ブラックホールAIは劇的に短縮します。",
+                "section-3-timeline-1-title": "第1週：アイデア展開",
+                "section-3-timeline-1-desc": "核心的なアイデアから20以上の異なる方向のストーリーアウトラインを生成",
+                "section-3-timeline-2-title": "第2-3週：脚本評価会",
+                "section-3-timeline-2-desc": "1-2名のプロscreenwriterがAI生成案を評価し、最適な方向を選定",
+                "section-3-timeline-3-title": "第4-6週：詳細脚本制作",
+                "section-3-timeline-3-desc": "選定された方向に基づき、3つ以上の詳細な脚本初稿を生成",
+                "section-3-timeline-4-title": "第7-8週：人工精修",
+                "section-3-timeline-4-desc": "プロのscreenwriterによる最終調整と芸術的昇華",
+                "section-3-h3-2": "核心技術の優位性",
+                "section-3-li-1-strong": "心理学ベースの技術ライブラリ：",
+                "section-3-li-1": "既存の脚本ではなく、数万の映像制作技法知識グラフで学習。完全にオリジナルな創作を保証",
+                "section-3-li-2-strong": "AI脚本監督という新職業：",
+                "section-3-li-2": "人間のscreenwriterがAIの主人となり、強力な人間性思考でAIを駆使する新しい協業モデル",
+                "section-3-li-3-strong": "リアルタイム最適化：",
+                "section-3-li-3": "producerのフィードバックに基づき、AIが即座に脚本を調整・改善",
+                "section-3-case-h3": "実績ケース：映画『悉達多』",
+                "section-3-case-p1": "国際共同制作プロジェクトで、仏教哲学の深遠な思想を現代的視点で表現する挑戦",
+                "section-3-highlight-1": "20+ 視点",
+                "section-3-case-p2": "女性視点、現代青年視点、ファンタジー風など、多様な切り口の脚本アウトラインを生成",
+                "section-3-highlight-2": "70% コスト削減",
+                "section-3-case-p3": "脚本開発予算の約3分の2を節約し、より重要な制作部門に再配分",
+                "section-4-title": "4. 予算統括管理システム",
+                "section-4-h3-1": "映画制作の新しい管理パラダイム",
+                "section-4-p1": "映画プロジェクト管理は空中で積み木を組み立てるような複雑さ。一つの調整が全体に影響します。ブラックホールAIの多次元予算コントローラーが、すべてのリソース変動をリアルタイムで監視・シミュレーションします。",
+                "section-4-h3-2": "スマート調整の実例",
+                "section-4-case-h4": "主演俳優のスケジュール衝突への対応",
+                "section-4-case-p1": "<strong>従来の問題点：</strong> 全クルー待機、毎日コスト発生、または俳優交代による巨額損失",
+                "section-4-case-strong-1": "従来の問題点：",
+                "section-4-case-span-1": "全クルー待機、毎日コスト発生、または俳優交代による巨額損失",
+                "section-4-case-p2": "<strong>ブラックホールAIソリューション：</strong>",
+                "section-4-case-strong-2": "ブラックホールAIソリューション：",
+                "section-4-case-li-1": "即時影響評価：スケジュール変更が各シーンに与える影響を瞬時に分析",
+                "section-4-case-li-2": "最適撮影順序の再編成：代替シーンの先行撮影、スタンドイン使用の提案など",
+                "section-4-case-li-3": "20以上のパラメータ総合計算：俳優スケジュール、ロケーション費用、天気予報など総合的に最適解を導出",
+                "section-4-h3-3": "マルチエージェント協業アーキテクチャ",
+                "section-4-stat-1-h4": "制作エージェント",
+                "section-4-stat-1-p": "撮影スケジュール、ロケーション管理、機材調達を最適化",
+                "section-4-stat-2-h4": "財務エージェント",
+                "section-4-stat-2-p": "予算配分、キャッシュフロー管理、コスト予測を担当",
+                "section-4-stat-3-h4": "環境エージェント",
+                "section-4-stat-3-p": "天候、季節、ロケーション条件を考慮した最適化",
+                "section-5-title": "5. AI絵コンテ設計",
+                "section-5-h3-1": "映画ビジュアルの革命",
+                "section-5-p1": "従来2-6ヶ月以上かかる絵コンテ制作が「ワンクリック生成」の新時代へ。AIは任意の巨匠の視聴覚スタイルを模倣し、1週間で2000枚以上の高品質絵コンテを生産できます。",
+                "section-5-h3-2": "巨匠スタイルライブラリ",
+                "section-5-feature-1-h4": "ヒッチコック",
+                "section-5-feature-1-p": "サスペンスの演出、独特のカメラアングルと構図",
+                "section-5-feature-2-h4": "ベルイマン",
+                "section-5-feature-2-p": "心理的な絵コンテ、クローズアップと光影の運用",
+                "section-5-feature-3-h4": "キューブリック",
+                "section-5-feature-3-p": "対称的な構図、独特の色調とビジュアルスタイル",
+                "section-5-feature-4-h4": "タルコフスキー",
+                "section-5-feature-4-p": "詩的な映像言語、長回しと自然要素の融合",
+                "section-5-h3-3": "技術的優位性",
+                "section-5-case-h4-1": "生成速度の突破",
+                "section-5-highlight-1": "30分",
+                "section-5-case-p1": "1シーンの全storyboard表を完全生成",
+                "section-5-case-h4-2": "柔軟な適応能力",
+                "section-5-case-p2": "新しいロケーションや俳優変更への即時対応：",
+                "section-5-case-li-1": "新しいシーンの写真・動画素材を提供するだけで自動適応",
+                "section-5-case-li-2": "俳優変更時のキャラクター設定と台詞の自動調整",
+                "section-5-case-li-3": "70%以上のプリプロダクション会議時間を削減",
+                "section-5-quote": "「私は模倣しない、私は盗む」— クエンティン・タランティーノ監督の言葉通り、巨匠たちの視聴覚言語を学ぶことは映画制作の本質です。",
+                "section-6-title": "6. 音楽プリプロダクション",
+                "section-6-h3-1": "映画音楽制作の新しいワークフロー",
+                "section-6-p1": "従来、作曲家は映像編集完了後に音楽を創作していましたが、これは監督の音楽スタイルへの期待と最終成果物の不一致を引き起こす可能性があります。ブラックホールAIは「映画音楽プリプロダクション」サービスを提供し、脚本段階から大量のスタイル化された音楽を生成します。",
+                "section-6-case-h3": "実績ケース：没入型演劇『寂寞芳心小姐』",
+                "section-6-highlight": "20分",
+                "section-6-case-p1": "SUNO4.5を使用してメインテーマ曲を完成",
+                "section-6-case-h4": "プロジェクト成果：",
+                "section-6-case-li-1": "100曲以上のオリジナル音楽フラグメントを生成",
+                "section-6-case-li-2": "交響楽、電子音楽、民族音楽など多様なスタイルをカバー",
+                "section-6-case-li-3": "監督が事前に音楽の方向性を確定でき、後期調整を大幅削減",
+                "section-6-h3-2": "プロフェッショナルとの協業",
+                "section-6-li-1-strong": "作曲家の創造性を尊重：",
+                "section-6-li-1": "AIは参考サンプルを提供し、プロの作曲家の創作時間を短縮",
+                "section-6-li-2-strong": "感情基調の事前確定：",
+                "section-6-li-2": "メインメロディの感情的方向性、必要な楽器編成の特色を明確化",
+                "section-6-li-3-strong": "反復コミュニケーションの削減：",
+                "section-6-li-3": "事前の方向性確定により、試行錯誤のコミュニケーションを回避",
+                "section-6-h3-3": "音楽スタイルカスタマイズ",
+                "section-6-feature-1-h4": "クラシック",
+                "section-6-feature-1-p": "オーケストラ編成、室内楽、独奏楽器など、映画の感情的ニーズに応じた古典音楽スタイル",
+                "section-6-feature-2-h4": "電子音楽",
+                "section-6-feature-2-p": "シンセサイザー、アンビエント、テクノなど、現代的な雰囲気を作る電子音楽要素",
+                "section-6-feature-3-h4": "民族音楽",
+                "section-6-feature-3-p": "各国の伝統楽器と音楽スタイル、ストーリーの文化的背景を強化",
+                "section-6-feature-4-h4": "ハイブリッド",
+                "section-6-feature-4-p": "複数のスタイルを融合し、独特で革新的なサウンドスケープを創造",
+                "section-7-title": "7. 特殊効果プレビズ制作",
+                "section-7-h3-1": "VFXコスト管理の革命",
+                "section-7-p1": "従来、複雑な特殊効果ショットは撮影後期に特効会社に委託して制作され、費用が高額で、効果が不満足な場合は再制作が必要でした。ブラックホールAIは仮想エンジンとグラフィック生成能力を活用し、前期段階で特効シーンのプレビズを生成できます。",
+                "section-7-h3-2": "プレビズ制作の利点",
+                "section-7-stat-1-h4": "事前可視化",
+                "section-7-stat-1-p": "監督が撮影前に最終効果を確認し、創造的な調整が可能",
+                "section-7-stat-2-h4": "コスト予測",
+                "section-7-stat-2-p": "正確な特効予算を事前に把握し、予算超過を回避",
+                "section-7-stat-3-h4": "撮影効率",
+                "section-7-stat-3-p": "現場チームが特効ショットの要求を明確に理解",
+                "section-7-stat-4-h4": "技術検証",
+                "section-7-stat-4-p": "複雑な特効の実現可能性を事前に検証",
+                "section-7-h3-3": "対応可能な特効タイプ",
+                "section-7-case-h4-1": "環境効果",
+                "section-7-case-li-1-1": "天候シミュレーション（雨、雪、霧、嵐）",
+                "section-7-case-li-1-2": "自然災害（地震、津波、火山噴火）",
+                "section-7-case-li-1-3": "宇宙・SF環境",
+                "section-7-case-h4-2": "キャラクター効果",
+                "section-7-case-li-2-1": "デジタルダブル",
+                "section-7-case-li-2-2": "クリーチャーデザイン",
+                "section-7-case-li-2-3": "変身・変形効果",
+                "section-7-case-h4-3": "アクションシーケンス",
+                "section-7-case-li-3-1": "爆発・破壊シーン",
+                "section-7-case-li-3-2": "車両追跡",
+                "section-7-case-li-3-3": "空中戦・宇宙戦",
+                "section-7-h3-4": "制作プロセス",
+                "section-7-timeline-1-title": "コンセプトデザイン",
+                "section-7-timeline-1-desc": "脚本に基づき、特効シーンの初期コンセプトを開発",
+                "section-7-timeline-2-title": "3Dモデリング",
+                "section-7-timeline-2-desc": "必要な3D要素とアセットを構築",
+                "section-7-timeline-3-title": "アニメーション制作",
+                "section-7-timeline-3-desc": "動きとタイミングを設定し、基本的なアニメーションを作成",
+                "section-7-timeline-4-title": "レンダリング出力",
+                "section-7-timeline-4-desc": "高品質のプレビズ映像を生成し、評価用に提供",
+                "section-8-title": "8. シーンスマート適応",
+                "section-8-h3-1": "制作の柔軟性を最大化",
+                "section-8-p1": "従来の制作プロセスでは、撮影前に監督が新しいロケーションを気に入った場合、脚本家が数日かけて脚本を修正する必要がありました。ブラックホールAIのマルチモーダル適応能力により、これらの調整は数時間で自動完了します。",
+                "section-8-h3-2": "適応能力の実例",
+                "section-8-case-h4-1": "ロケーション変更への対応",
+                "section-8-case-p1": "監督が新しいロケーションの写真や動画を提供するだけで：",
+                "section-8-case-li-1-1": "AIが視覚的特徴を解析",
+                "section-8-case-li-1-2": "対応するシーンのストーリーと絵コンテを再生成",
+                "section-8-case-li-1-3": "脚本、ショットと新しいロケーションの完璧な融合を確保",
+                "section-8-case-h4-2": "俳優交代への対応",
+                "section-8-case-p2": "新しい俳優の基本特徴を入力するだけで：",
+                "section-8-case-li-2-1": "キャラクターの台詞と設定詳細を自動調整",
+                "section-8-case-li-2-2": "新俳優バージョンの脚本と絵コンテを生成",
+                "section-8-case-li-2-3": "キャラクターの一貫性と信憑性を維持",
+                "section-8-h3-3": "導入効果",
+                "section-8-highlight-1": "70%",
+                "section-8-stat-1-p": "会議時間削減",
+                "section-8-highlight-2": "90%",
+                "section-8-stat-2-p": "再撮影率減少",
+                "section-8-h3-4": "スマート適応プロセス",
+                "section-8-ol-1-strong": "素材入力：",
+                "section-8-ol-1": "新しいロケーションや俳優の画像/動画素材を提供",
+                "section-8-ol-2-strong": "AI分析：",
+                "section-8-ol-2": "視覚特徴、空間構造、光線条件などを総合分析",
+                "section-8-ol-3-strong": "自動調整：",
+                "section-8-ol-3": "脚本、絵コンテ、撮影計画を新しい条件に合わせて最適化",
+                "section-8-ol-4-strong": "人工確認：",
+                "section-8-ol-4": "監督とproducerが最終調整案を確認・承認",
+                "section-9-title": "9. 独自の脚本盗作検出システム",
+                "plagiarism-h2": "完全オリジナル創作の保証",
+                "plagiarism-p": "既存の脚本ライブラリではなく、心理学に基づく数万のテクニックライブラリで学習<br>根本から盗作リスクを回避し、あなたの創造的な著作権を保護",
+                "section-9-h3-1": "技術的アプローチ",
+                "section-9-p1": "ブラックホールAIの訓練方式は革新的です。直接脚本で訓練するのではなく、数万条の映像技法知識グラフを使用。これは人間の脚本家が技法を学ぶプロセスと同じで、AIがより速く学習するだけです。",
+                "section-9-feature-1-h4": "テクニックライブラリ学習",
+                "section-9-feature-1-p": "既存の脚本を使用せず、映像制作テクニックのナレッジグラフに基づく",
+                "section-9-feature-2-h4": "オリジナリティ保証",
+                "section-9-feature-2-p": "すべての脚本は新規作成、著作権紛争を完全に回避",
+                "section-9-feature-3-h4": "スマート盗作検出",
+                "section-9-feature-3-p": "類似度をリアルタイム検出、作品の独自性を確保",
+                "section-9-feature-4-h4": "著作権保護",
+                "section-9-feature-4-p": "あなたの創造性に完全な著作権保護ソリューションを提供",
+                "section-9-h3-2": "著作権への配慮",
+                "section-9-p2": "映画史において「絵コンテスタイル」の著作権は存在しません。人類は常に巨匠の視聴覚言語を学び、個性的に組み合わせて新しい表現を生み出してきました。AIはこのプロセスをより効率的にするだけです。",
+                "section-10-title": "10. 実績とケーススタディ",
+                "section-10-h3-1": "ケース1：映画『少年行』",
+                "section-10-case-1-p1": "青少年の軍事訓練キャンプでの成長を描く中規模予算の作品。ストーリー概要から撮影完了まで僅か2ヶ月。",
+                "section-10-case-1-h4-1": "挑戦",
+                "section-10-case-1-p2": "脚本家は複数の少年の心理変化を深く描写する必要があったが、心理学の専門知識がなく、独学では半年以上かかる見込みだった。",
+                "section-10-case-1-h4-2": "ソリューション",
+                "section-10-case-1-p3": "ブラックホールAIが膨大な「発達心理学」知識ベースを導入。AIが各少年キャラクターの詳細な心理状態レポートと発達軌跡を提供。",
+                "section-10-case-1-h4-3": "成果",
+                "section-10-case-1-li-1": "脚本開発期間を予定の半分に短縮",
+                "section-10-case-1-li-2": "関連調査の人件費を50%以上削減",
+                "section-10-case-1-li-3": "キャラクター描写の深さと真実性が大幅向上",
+                "section-10-h3-2": "ケース2：映画『悉達多』",
+                "section-10-case-2-p1": "仏陀悉達多の思想が現代生活に与える影響を描く国際共同制作作品。",
+                "section-10-case-2-h4-1": "挑戦",
+                "section-10-case-2-p2": "深遠な仏教哲学を一般観客の視点でどう解釈するか",
+                "section-10-case-2-h4-2": "ソリューション",
+                "section-10-case-2-p3": "ブラックホールAIチームが専門の「仏学」知識データベースを構築。AIが異なる視点から悉達多の物語を語るよう要求。",
+                "section-10-case-2-h4-3": "驚きの成果",
+                "section-10-highlight-1": "20+",
+                "section-10-case-2-p4": "異なる視点、スタイルの完全な脚本アウトライン",
+                "section-10-case-2-li-1": "女性視点バージョン",
+                "section-10-case-2-li-2": "現代国際青年視点での仏理解釈バージョン",
+                "section-10-case-2-li-3": "ファンタジー色彩、リアリズムなど多様なタイプ",
+                "section-10-case-2-h4-4": "最終成果",
+                "section-10-case-2-li-4": "脚本コストを70%以上削減",
+                "section-10-case-2-li-5": "節約した予算を美術、宣伝など重要部門に再配分",
+                "section-10-case-2-li-6": "AIが繰り返し作業を担当し、人間クリエイターが真の芸術創作に集中",
+                "section-10-stat-1-h4": "30%+",
+                "section-10-stat-1-p": "平均予算削減",
+                "section-10-stat-2-h4": "70%",
+                "section-10-stat-2-p": "脚本制作効率向上",
+                "section-10-stat-3-h4": "2000+",
+                "section-10-stat-3-p": "週間絵コンテ生産量",
+                "section-10-stat-4-h4": "2ヶ月",
+                "section-10-stat-4-p": "脚本完成サイクル",
+                "section-11-title": "11. コアチーム紹介",
+                "section-11-p1": "ブラックホールAIのコア研究開発チームは、学術エリートとアーティストが共同で技術プロセスを開発しており、未来の人類協力の方向性を示しています。",
+                "section-11-team-1-h4": "宋慧桐（ソン・フイトン）",
+                "section-11-team-1-role": "投資管理",
+                "section-11-team-1-p": "博士、映像技術専門家、20年以上の業界経験、豪州上場企業Atomos元共同創業者、マカオ科技大学博士、ブラックホールAIプロジェクトのエンジェル投資家",
+                "section-11-team-2-h4": "Kurt（カート）",
+                "section-11-team-2-role": "基盤アーキテクチャ設計",
+                "section-11-team-2-p": "博士、SC映画学院創設者、20年近い映像教育・脚本・監督経験。北京電影学院撮影学科修士、マカオ科技大学映画管理博士。博士2年次に特別に教員として採用され4年間教鞭を執る",
+                "section-11-team-3-h4": "陳燕升（チェン・イェンシェン）",
+                "section-11-team-3-role": "チーフテクニカルエキスパート",
+                "section-11-team-3-p": "博士、研究員、AI上級エンジニア、博士課程指導教員、広東・香港・マカオ大湾区AI産業シンクタンク専門家、グローバルトップ1%ESI高被引用論文著者、15件の人工知能特許を保有",
+                "section-11-team-4-h4": "宣孟陽（シュアン・モンヤン）",
+                "section-11-team-4-role": "技術応用実装",
+                "section-11-team-4-p": "博士、天津工業大学材料科学・コンピュータ専攻、北京電影学院撮影学科修士、清華美術学院情報芸術設計博士。現在ブラックホールAIの教育研修および清華系の後輩とスマートグラスプロジェクトを共同開発中",
+                "section-11-h3": "専門家顧問団",
+                "section-11-p2": "ブラックホールAIは2つの異なる分野の専門家顧問団を擁しています：",
+                "section-11-li-1-strong": "技術顧問：",
+                "section-11-li-1": "清華大学コンピュータ専攻卒業、現在香港・マカオの著名大学教授、博士課程指導教員",
+                "section-11-li-2-strong": "業界顧問：",
+                "section-11-subli-1": "金基德（国際的著名screenwriter/監督、故人）",
+                "section-11-subli-2": "イカ（米国籍オランダ人監督、『断電的城市』監督、故人）",
+                "section-11-subli-3": "丁建国（畢贛監督の師匠、『路辺野餐』投資家・producer）",
+                "section-11-subli-4": "周智勇（『中国合伙人』screenwriter）",
+                "section-11-subli-5": "陳漢（映画『赤壁』screenwriter）",
+                "section-11-quote": "「ブラックホールAIは単なるソフトウェアではなく、専門家チームが大規模言語モデルを技術基盤として構築したサービスシステムです。彼らは映画業界だけでなく、システム構築の考え方で各分野にサービスを提供できます。」",
+                "section-12-title": "12. お問い合わせ",
+                "section-12-h3": "AI映画制作の新時代を開く",
+                "section-12-p1": "豆瓣8点以上の作品または興行収入10億以上の商業作品の<br>クリエイターとの協業を歓迎します",
+                "section-12-quote": "「私たちは2ヶ月の公開テスト後、どのプラットフォームにも公開しないことを決定し、カスタムプロジェクトとして映画サービスを推進することにしました。AIは本当に多くのクリエイターの失業を引き起こす可能性があり、私たちはそのような結果を望んでいません。しかし、優秀なクリエイターとの協力を心から歓迎します。」",
+                "section-12-author": "— ブラックホールAIチーム",
+                "section-12-h4-1": "協業条件",
+                "section-12-p2": "豆瓣8点以上の映画作品または興行収入10億以上の商業作品の<br>screenwriter、監督、producer、出品者の方々",
+                "section-12-h4-2": "連絡先",
+                "section-12-p3": "詳細なご相談は、アシスタントのWeChatまでご連絡ください",
+                "contact-email-strong": "Email:",
+                "contact-email": "kurtsun2201@gmail.com",
+                "contact-wechat-strong": "WeChat:",
+                "contact-wechat": "sczhujiao",
+                "footer": "© 2024 ブラックホールAI. All rights reserved.<br>中国映画を新たな段階へ導くために共に努力しましょう"
+            },
+            zh: {
+                "page-title": "黑洞AI - 一站式AI内容生成机构",
+                "logo": "黑洞AI",
+                "hero-title": "黑洞AI",
+                "hero-subtitle": "一站式AI内容生成机构<br>节省成本,提升质量,一站式AI辅助影视服务",
+                "hero-description": "电影·影像制作向けAI集成解决方案<br>全面服务目录",
+                "toc-title": "目录",
+                "toc-1": "公司概况与愿景",
+                "toc-2": "核心服务概述",
+                "toc-3": "AI剧本创作服务",
+                "toc-4": "预算统筹管理系统",
+                "toc-5": "AI分镜设计",
+                "toc-6": "音乐预制作",
+                "toc-7": "特效预可视化制作",
+                "toc-8": "场景智能适应",
+                "toc-9": "剽窃检测系统",
+                "toc-10": "业绩与案例研究",
+                "toc-11": "核心团队介绍",
+                "toc-12": "联系我们",
+                "section-1-title": "1. 公司概况与愿景",
+                "section-1-p1": "黑洞AI是给电影·影像制作行业带来革命的AI集成解决方案。不只是软件，而是基于AI技术的全面服务系统，支持整个制作过程。",
+                "section-1-h3-1": "我们的使命",
+                "section-1-p2": "「中等预算实现大片级效果」——这是我们的核心理念。传统的电影制作需要巨额预算来制作优秀作品。黑洞AI通过最先进的AI技术颠覆了这一常识。",
+                "section-1-quote": "「传统的电影制作剧本至少需要3-6个月，但我们不到1个月就完成了。黑洞AI的真正实力在于用强大技术应对个别需求。」",
+                "section-1-quote-author": "— 电影producer（黑洞AI定制服务首位客户）",
+                "section-1-h3-2": "技术创新的承诺",
+                "section-1-p3": "我们以大规模语言模型为基础，构建了专为电影制作各阶段的AI系统。这不仅仅是自动化，而是最大限度激发人类创造力的「智能伙伴」。",
+                "section-2-title": "2. 核心服务概述",
+                "service-1-title": "AI剧本创作",
+                "service-1-desc": "一个黑洞AI相当于20个screenwriter。1周内生成20多个故事大纲，2个月内完成剧本，screenwriter成本降低70%",
+                "service-2-title": "预算统筹管理",
+                "service-2-desc": "多代理动态控制，实时监控资源变动，自动优化调整方案，项目预算至少降低30%",
+                "service-3-title": "AI分镜设计",
+                "service-3-desc": "1周绘制2000张画稿，模仿各种大师的视听风格，30分钟生成全场景storyboard表",
+                "service-4-title": "音乐预制作",
+                "service-4-desc": "剧本阶段生成数百首风格化乐曲，20分钟完成主题曲，后期沟通成本大幅降低",
+                "service-5-title": "特效pre-visualization制作",
+                "service-5-desc": "预制作阶段生成特效场景的pre-visualization，避免高额后期重做，导演提前确认最终效果",
+                "service-6-title": "场景智能适应",
+                "service-6-desc": "自动适应新场景或角色变更，几小时内完成剧本调整，预制作会议减少70%",
+                "section-3-title": "3. AI剧本创作服务",
+                "section-3-h3-1": "创新的剧本创作过程",
+                "section-3-p1": "电影制作的起点是剧本创作。传统上需要几个月到1-2年的过程，黑洞AI大幅缩短。",
+                "section-3-timeline-1-title": "第1周：想法展开",
+                "section-3-timeline-1-desc": "从核心想法生成20多个不同方向的故事大纲",
+                "section-3-timeline-2-title": "第2-3周：剧本评估会",
+                "section-3-timeline-2-desc": "1-2名资深screenwriter评估AI生成方案，选择最佳方向",
+                "section-3-timeline-3-title": "第4-6周：详细剧本制作",
+                "section-3-timeline-3-desc": "基于选定方向生成3个以上详细剧本初稿",
+                "section-3-timeline-4-title": "第7-8周：人工精修",
+                "section-3-timeline-4-desc": "专业screenwriter进行最终调整和艺术升华",
+                "section-3-h3-2": "核心技术优势",
+                "section-3-li-1-strong": "基于心理学的技术库：",
+                "section-3-li-1": "不是现有剧本，而是用数万影像制作技法知识图谱学习。保证完全原创创作",
+                "section-3-li-2-strong": "AI剧本导演新职业：",
+                "section-3-li-2": "人类screenwriter成为AI的主人，用强大的人性思维驾驭AI的新协作模式",
+                "section-3-li-3-strong": "实时优化：",
+                "section-3-li-3": "基于producer反馈，AI即时调整·改进剧本",
+                "section-3-case-h3": "业绩案例：电影《悉达多》",
+                "section-3-case-p1": "国际联合制作项目，用现代视角表现佛教哲学的深刻思想的挑战",
+                "section-3-highlight-1": "20+ 视角",
+                "section-3-case-p2": "女性视角、现代青年视角、幻想风等，多样切入点的剧本大纲生成",
+                "section-3-highlight-2": "70% 成本降低",
+                "section-3-case-p3": "剧本开发预算节约约三分之二，重新分配到更重要的制作部门",
+                "section-4-title": "4. 预算统筹管理系统",
+                "section-4-h3-1": "电影制作的新管理范式",
+                "section-4-p1": "电影项目管理像在空中搭积木一样复杂。一个调整会影响整体。黑洞AI的多维预算控制器，实时监控·模拟所有资源变动。",
+                "section-4-h3-2": "智能调整实例",
+                "section-4-case-h4": "主演演员日程冲突的对应",
+                "section-4-case-strong-1": "传统的问题点：",
+                "section-4-case-span-1": "全组待机，每天产生成本，或演员更换造成巨额损失",
+                "section-4-case-strong-2": "黑洞AI解决方案：",
+                "section-4-case-li-1": "即时影响评估：日程变更对各场景的影响瞬间分析",
+                "section-4-case-li-2": "最佳拍摄顺序重组：替代场景先行拍摄、替身使用提案等",
+                "section-4-case-li-3": "20以上参数综合计算：演员日程、场地费用、天气预报等综合导出最优解",
+                "section-4-h3-3": "多代理协作架构",
+                "section-4-stat-1-h4": "制作代理",
+                "section-4-stat-1-p": "优化拍摄日程、场地管理、器材采购",
+                "section-4-stat-2-h4": "财务代理",
+                "section-4-stat-2-p": "负责预算分配、现金流管理、成本预测",
+                "section-4-stat-3-h4": "环境代理",
+                "section-4-stat-3-p": "考虑天气、季节、场地条件进行优化",
+                "section-5-title": "5. AI分镜设计",
+                "section-5-h3-1": "电影视觉的革命",
+                "section-5-p1": "传统2-6个月以上分镜制作进入「一键生成」的新时代。AI模仿任意大师的视听风格，1周生产2000张以上高质量分镜。",
+                "section-5-h3-2": "大师风格库",
+                "section-5-feature-1-h4": "希区柯克",
+                "section-5-feature-1-p": "悬念的演出、独特的相机角度和构图",
+                "section-5-feature-2-h4": "伯格曼",
+                "section-5-feature-2-p": "心理性的分镜、特写和光影运用",
+                "section-5-feature-3-h4": "库布里克",
+                "section-5-feature-3-p": "对称构图、独特的色调和视觉风格",
+                "section-5-feature-4-h4": "塔可夫斯基",
+                "section-5-feature-4-p": "诗意的影像语言、长镜头和自然元素的融合",
+                "section-5-h3-3": "技术优势",
+                "section-5-case-h4-1": "生成速度的突破",
+                "section-5-highlight-1": "30分",
+                "section-5-case-p1": "1场景的全storyboard表完全生成",
+                "section-5-case-h4-2": "灵活的适应能力",
+                "section-5-case-p2": "新场地或演员变更的即时对应：",
+                "section-5-case-li-1": "只需提供新场景的照片·视频素材即可自动适应",
+                "section-5-case-li-2": "演员变更时的角色设置和台词自动调整",
+                "section-5-case-li-3": "减少70%以上的预制作会议时间",
+                "section-5-quote": "「我不模仿，我偷取」— 昆汀·塔兰蒂诺导演的话语一样，学习大师们的视听语言是电影制作的本質。",
+                "section-6-title": "6. 音乐预制作",
+                "section-6-h3-1": "电影音乐制作的新工作流",
+                "section-6-p1": "传统上，作曲家在影像编辑完成后创作音乐，但这可能导致导演对音乐风格的期待与最终成果不一致。黑洞AI提供「电影音乐预制作」服务，从剧本阶段生成大量风格化音乐。",
+                "section-6-case-h3": "业绩案例：沉浸式戏剧《寂寞芳心小姐》",
+                "section-6-highlight": "20分",
+                "section-6-case-p1": "使用SUNO4.5完成主主题曲",
+                "section-6-case-h4": "项目成果：",
+                "section-6-case-li-1": "生成100首以上原创音乐片段",
+                "section-6-case-li-2": "覆盖交响乐、电子音乐、民族音乐等多样风格",
+                "section-6-case-li-3": "导演提前确定音乐方向，大幅减少后期调整",
+                "section-6-h3-2": "与专业人士的协作",
+                "section-6-li-1-strong": "尊重作曲家的创造性：",
+                "section-6-li-1": "AI提供参考样本，缩短专业作曲家的创作时间",
+                "section-6-li-2-strong": "感情基调的提前确定：",
+                "section-6-li-2": "明确主旋律的感情方向、所需乐器编成的特色",
+                "section-6-li-3-strong": "重复沟通的减少：",
+                "section-6-li-3": "提前确定方向，避免试错沟通",
+                "section-6-h3-3": "音乐风格定制",
+                "section-6-feature-1-h4": "古典",
+                "section-6-feature-1-p": "管弦乐编成、室内乐、独奏乐器等，対応电影感情需求的古典音乐风格",
+                "section-6-feature-2-h4": "电子音乐",
+                "section-6-feature-2-p": "合成器、氛围、techno等，创造现代氛围的电子音乐元素",
+                "section-6-feature-3-h4": "民族音乐",
+                "section-6-feature-3-p": "各国传统乐器和音乐风格，加强故事的文化背景",
+                "section-6-feature-4-h4": "混合",
+                "section-6-feature-4-p": "融合多种风格，创造独特创新的声音景观",
+                "section-7-title": "7. 特效pre-visualization制作",
+                "section-7-h3-1": "VFX成本管理的革命",
+                "section-7-p1": "传统上，复杂特效镜头在拍摄后期委托特效公司制作，费用高额，如果效果不满意需要重做。黑洞AI利用虚拟引擎和图形生成能力，在前期阶段生成特效场景的pre-visualization。",
+                "section-7-h3-2": "pre-visualization制作的优势",
+                "section-7-stat-1-h4": "事前可视化",
+                "section-7-stat-1-p": "导演在拍摄前确认最终效果，进行创造性调整",
+                "section-7-stat-2-h4": "成本预测",
+                "section-7-stat-2-p": "提前把握准确的特效预算，避免预算超支",
+                "section-7-stat-3-h4": "拍摄效率",
+                "section-7-stat-3-p": "现场团队明确理解特效镜头的要求",
+                "section-7-stat-4-h4": "技术验证",
+                "section-7-stat-4-p": "提前验证复杂特效的可实现性",
+                "section-7-h3-3": "対応可能な特效类型",
+                "section-7-case-h4-1": "环境效果",
+                "section-7-case-li-1-1": "天气模拟（雨、雪、雾、风暴）",
+                "section-7-case-li-1-2": "自然灾害（地震、海啸、火山喷发）",
+                "section-7-case-li-1-3": "宇宙·SF环境",
+                "section-7-case-h4-2": "角色效果",
+                "section-7-case-li-2-1": "数字替身",
+                "section-7-case-li-2-2": "生物设计",
+                "section-7-case-li-2-3": "变身·变形效果",
+                "section-7-case-h4-3": "动作序列",
+                "section-7-case-li-3-1": "爆炸·破坏场景",
+                "section-7-case-li-3-2": "车辆追逐",
+                "section-7-case-li-3-3": "空中战·宇宙战",
+                "section-7-h3-4": "制作过程",
+                "section-7-timeline-1-title": "概念设计",
+                "section-7-timeline-1-desc": "基于剧本，开发特效场景的初始概念",
+                "section-7-timeline-2-title": "3D建模",
+                "section-7-timeline-2-desc": "构建必要的3D元素和资产",
+                "section-7-timeline-3-title": "动画制作",
+                "section-7-timeline-3-desc": "设置动作和时机，创建基本动画",
+                "section-7-timeline-4-title": "渲染输出",
+                "section-7-timeline-4-desc": "生成高质量的pre-visualization影像，提供用于评估",
+                "section-8-title": "8. 场景智能适应",
+                "section-8-h3-1": "最大化制作的灵活性",
+                "section-8-p1": "传统的制作过程，如果拍摄前导演喜欢新场地，编剧需要几天修改剧本。黑洞AI的多模态适应能力，使这些调整几小时内自动完成。",
+                "section-8-h3-2": "适应能力实例",
+                "section-8-case-h4-1": "场地变更的对应",
+                "section-8-case-p1": "导演只需提供新场地的照片或视频：",
+                "section-8-case-li-1-1": "AI解析视觉特征",
+                "section-8-case-li-1-2": "重新生成对应场景的故事和storyboard",
+                "section-8-case-li-1-3": "确保剧本、镜头与新场地的完美融合",
+                "section-8-case-h4-2": "演员更换的对应",
+                "section-8-case-p2": "只需输入新演员的基本特征：",
+                "section-8-case-li-2-1": "自动调整角色的台词和设置细节",
+                "section-8-case-li-2-2": "生成新演员版本的剧本和storyboard",
+                "section-8-case-li-2-3": "维持角色的一贯性和真实性",
+                "section-8-h3-3": "导入效果",
+                "section-8-highlight-1": "70%",
+                "section-8-stat-1-p": "会议时间减少",
+                "section-8-highlight-2": "90%",
+                "section-8-stat-2-p": "重拍率减少",
+                "section-8-h3-4": "智能适应过程",
+                "section-8-ol-1-strong": "素材输入：",
+                "section-8-ol-1": "提供新场地或演员的图像/视频素材",
+                "section-8-ol-2-strong": "AI分析：",
+                "section-8-ol-2": "综合分析视觉特征、空间结构、光线条件等",
+                "section-8-ol-3-strong": "自动调整：",
+                "section-8-ol-3": "根据新条件优化剧本、storyboard、拍摄计划",
+                "section-8-ol-4-strong": "人工确认：",
+                "section-8-ol-4": "导演和producer确认·批准最终调整方案",
+                "section-9-title": "9. 独自的剧本剽窃检测系统",
+                "plagiarism-h2": "完全原创创作的保证",
+                "plagiarism-p": "不是现有剧本库，而是基于心理学的数万技法库学习<br>从根本避免剽窃风险，保护你的创造性版权",
+                "section-9-h3-1": "技术方法",
+                "section-9-p1": "黑洞AI的训练方式是创新的。不直接用剧本训练，而是使用数万条影像技法知识图谱。这与人类编剧学习技法的过程相同，AI只是学习更快而已。",
+                "section-9-feature-1-h4": "技法库学习",
+                "section-9-feature-1-p": "不使用现有剧本，基于影像制作技法的知识图谱",
+                "section-9-feature-2-h4": "原创性保证",
+                "section-9-feature-2-p": "所有剧本均为新建，完全避免版权纠纷",
+                "section-9-feature-3-h4": "智能剽窃检测",
+                "section-9-feature-3-p": "实时检测相似度，确保作品的独特性",
+                "section-9-feature-4-h4": "版权保护",
+                "section-9-feature-4-p": "为你的创造性提供完整的版权保护解决方案",
+                "section-9-h3-2": "对版权的考虑",
+                "section-9-p2": "电影史上「storyboard风格」的版权不存在。人类总是学习大师的视听语言，个性组合创造新表现。AI只是使这个过程更高效而已。",
+                "section-10-title": "10. 业绩与案例研究",
+                "section-10-h3-1": "案例1：电影《少年行》",
+                "section-10-case-1-p1": "描绘青少年在军事训练营成长的中等预算作品。从故事概要到拍摄完成仅2个月。",
+                "section-10-case-1-h4-1": "挑战",
+                "section-10-case-1-p2": "编剧需要深入描绘多个少年的心理变化，但缺乏心理学专业知识，自学预计需要半年以上。",
+                "section-10-case-1-h4-2": "解决方案",
+                "section-10-case-1-p3": "黑洞AI引入庞大的「发展心理学」知识库。AI提供各少年角色的详细心理状态报告和发展轨迹。",
+                "section-10-case-1-h4-3": "成果",
+                "section-10-case-1-li-1": "剧本开发期缩短到预定的半分",
+                "section-10-case-1-li-2": "相关调查的人工费减少50%以上",
+                "section-10-case-1-li-3": "角色描绘的深度和真实性大幅提高",
+                "section-10-h3-2": "案例2：电影《悉达多》",
+                "section-10-case-2-p1": "描绘佛陀悉达多思想对现代生活影响的国际联合制作作品。",
+                "section-10-case-2-h4-1": "挑战",
+                "section-10-case-2-p2": "如何从一般观众视角解释深刻的佛教哲学",
+                "section-10-case-2-h4-2": "解决方案",
+                "section-10-case-2-p3": "黑洞AI团队构建专业的「佛学」知识数据库。要求AI从不同视角讲述悉达多的故事。",
+                "section-10-case-2-h4-3": "惊人的成果",
+                "section-10-highlight-1": "20+",
+                "section-10-case-2-p4": "不同视角、风格的完整剧本大纲",
+                "section-10-case-2-li-1": "女性视角版本",
+                "section-10-case-2-li-2": "现代国际青年视角的佛理解释版本",
+                "section-10-case-2-li-3": "幻想色彩、现实主义等多样类型",
+                "section-10-case-2-h4-4": "最终成果",
+                "section-10-case-2-li-4": "剧本成本减少70%以上",
+                "section-10-case-2-li-5": "节约的预算重新分配到美术、宣传等重要部门",
+                "section-10-case-2-li-6": "AI负责重复作业，人类创作者集中于真正的艺术创作",
+                "section-10-stat-1-h4": "30%+",
+                "section-10-stat-1-p": "平均预算减少",
+                "section-10-stat-2-h4": "70%",
+                "section-10-stat-2-p": "剧本制作效率提高",
+                "section-10-stat-3-h4": "2000+",
+                "section-10-stat-3-p": "周分镜生产量",
+                "section-10-stat-4-h4": "2个月",
+                "section-10-stat-4-p": "剧本完成周期",
+                "section-11-title": "11. 核心团队介绍",
+                "section-11-p1": "黑洞AI的核心研发团队，由学术精英和艺术家共同开发技术过程，展现未来人类合作的方 向。",
+                "section-11-team-1-h4": "宋慧桐（宋·慧桐）",
+                "section-11-team-1-role": "投资管理",
+                "section-11-team-1-p": "博士、影像技术专家、20年以上行业经验、澳洲上市公司Atomos元共同创始人、澳门科技大学博士、黑洞AI项目的天使投资者",
+                "section-11-team-2-h4": "Kurt（库尔特）",
+                "section-11-team-2-role": "基础架构设计",
+                "section-11-team-2-p": "博士、SC电影学院创始人、近20年影像教育·剧本·导演经验。北京电影学院摄影系硕士、澳门科技大学电影管理博士。博士2年级特别聘为教师执教4年",
+                "section-11-team-3-h4": "陈燕升（陈·燕升）",
+                "section-11-team-3-role": "首席技术专家",
+                "section-11-team-3-p": "博士、研究员、AI高级工程师、博士生导师、粤港澳大湾区AI产业智库专家、全球顶1%ESI高被引论文作者、拥有15项人工智能专利",
+                "section-11-team-4-h4": "宣孟阳（宣·孟阳）",
+                "section-11-team-4-role": "技术应用实施",
+                "section-11-team-4-p": "博士、天津工业大学材料科学·计算机专业、北京电影学院摄影系硕士、清华美术学院信息艺术设计博士。目前黑洞AI的教育培训以及与清华系后辈共同开发智能眼镜项目",
+                "section-11-h3": "专家顾问团",
+                "section-11-p2": "黑洞AI拥有2个不同领域的专家顾问团：",
+                "section-11-li-1-strong": "技术顾问：",
+                "section-11-li-1": "清华大学计算机专业毕业，目前港澳著名大学教授、博士生导师",
+                "section-11-li-2-strong": "行业顾问：",
+                "section-11-subli-1": "金基德（国际著名screenwriter/导演、故人）",
+                "section-11-subli-2": "伊卡（美国籍荷兰人导演、《断电的城市》导演、故人）",
+                "section-11-subli-3": "丁建国（毕赣导演的师傅、《路边野餐》投资者·producer）",
+                "section-11-subli-4": "周智勇（《中国合伙人》screenwriter）",
+                "section-11-subli-5": "陈汉（电影《赤壁》screenwriter）",
+                "section-11-quote": "「黑洞AI不只是软件，而是专家团队以大规模语言模型为技术基础构建的服务系统。他们不仅限于电影行业，以系统构建的思路为各领域提供服务。」",
+                "section-12-title": "12. 联系我们",
+                "section-12-h3": "开启AI电影制作的新时代",
+                "section-12-p1": "豆瓣8分以上作品或票房10亿以上商业作品的<br>创作者合作欢迎",
+                "section-12-quote": "「我们经过2个月公开测试后，决定不向任何平台公开，以定制项目形式推进电影服务。AI确实可能导致许多创作者失业，我们不希望这样的结果。但是，真诚欢迎与优秀创作者合作。」",
+                "section-12-author": "— 黑洞AI团队",
+                "section-12-h4-1": "合作条件",
+                "section-12-p2": "豆瓣8分以上电影作品或票房10亿以上商业作品的<br>screenwriter、导演、producer、出品人各位",
+                "section-12-h4-2": "联系方式",
+                "section-12-p3": "详细咨询请联系助理的WeChat",
+                "contact-email-strong": "邮箱:",
+                "contact-email": "kurtsun2201@gmail.com",
+                "contact-wechat-strong": "微信:",
+                "contact-wechat": "sczhujiao",
+                "footer": "© 2024 黑洞AI. 保留所有权利。<br>共同努力将中国电影引领到新阶段"
+            },
+            en: {
+                "page-title": "Blackhole AI - One-Stop AI Content Generation Agency",
+                "logo": "Blackhole AI",
+                "hero-title": "Blackhole AI",
+                "hero-subtitle": "One-Stop AI Content Generation Agency<br>Cost Savings, Quality Improvement, One-Stop AI-Assisted Film Service",
+                "hero-description": "AI Integrated Solutions for Film and Video Production<br>Comprehensive Service Catalog",
+                "toc-title": "Table of Contents",
+                "toc-1": "Company Overview and Vision",
+                "toc-2": "Core Services Overview",
+                "toc-3": "AI Script Creation Service",
+                "toc-4": "Budget Management System",
+                "toc-5": "AI Storyboard Design",
+                "toc-6": "Music Pre-Production",
+                "toc-7": "VFX Pre-Visualization Production",
+                "toc-8": "Scene Smart Adaptation",
+                "toc-9": "Plagiarism Detection System",
+                "toc-10": "Achievements and Case Studies",
+                "toc-11": "Core Team Introduction",
+                "toc-12": "Contact Us",
+                "section-1-title": "1. Company Overview and Vision",
+                "section-1-p1": "Blackhole AI is an AI integrated solution revolutionizing the film and video production industry. It's not just software, but a comprehensive service system based on AI technology that supports the entire production process.",
+                "section-1-h3-1": "Our Mission",
+                "section-1-p2": "\"Achieve blockbuster-level effects with mid-sized budgets\" — This is our core philosophy. Traditional film production required enormous budgets for excellent works. Blackhole AI overturns this norm using cutting-edge AI technology.",
+                "section-1-quote": "\"Traditional film production required at least 3-6 months for scripts, but we completed it in less than a month. Blackhole AI's true strength lies in addressing individual needs with powerful technology.\"",
+                "section-1-quote-author": "— Film producer (Blackhole AI's First Customized Service Client)",
+                "section-1-h3-2": "Commitment to Technological Innovation",
+                "section-1-p3": "We built AI systems specialized for each stage of film production based on large language models. This is not mere automation, but an \"intelligent partner\" to maximize human creativity.",
+                "section-2-title": "2. Core Services Overview",
+                "service-1-title": "AI Script Creation",
+                "service-1-desc": "One Blackhole AI equals 20 screenwriters. Generate 20+ story outlines in 1 week, complete script in 2 months, reduce screenwriter costs by 70%",
+                "service-2-title": "Budget Management",
+                "service-2-desc": "Multi-agent dynamic control, real-time monitoring of resource changes, automatic optimization plans, reduce project budget by at least 30%",
+                "service-3-title": "AI Storyboard Design",
+                "service-3-desc": "Draw 2000 images in 1 week, imitate any master's audiovisual style, generate full scene storyboard in 30 minutes",
+                "service-4-title": "Music Pre-Production",
+                "service-4-desc": "Generate hundreds of stylized tracks at script stage, complete theme song in 20 minutes, significantly reduce post-production communication costs",
+                "service-5-title": "VFX Pre-Visualization Production",
+                "service-5-desc": "Generate pre-visualization of VFX scenes in pre-production, avoid costly post-production redos, allow director to preview final effects",
+                "service-6-title": "Scene Smart Adaptation",
+                "service-6-desc": "Automatically adapt to new scenes or character changes, complete script adjustments in hours, reduce pre-production meetings by 70%",
+                "section-3-title": "3. AI Script Creation Service",
+                "section-3-h3-1": "Innovative Script Creation Process",
+                "section-3-p1": "Script creation is the starting point of film production. Blackhole AI dramatically shortens this process, which traditionally takes months to 1-2 years.",
+                "section-3-timeline-1-title": "Week 1: Idea Expansion",
+                "section-3-timeline-1-desc": "Generate 20+ story outlines in different directions from core ideas",
+                "section-3-timeline-2-title": "Weeks 2-3: Script Evaluation",
+                "section-3-timeline-2-desc": "1-2 senior screenwriters evaluate AI-generated proposals and select the optimal direction",
+                "section-3-timeline-3-title": "Weeks 4-6: Detailed Script Production",
+                "section-3-timeline-3-desc": "Generate 3+ detailed script drafts based on selected direction",
+                "section-3-timeline-4-title": "Weeks 7-8: Manual Refinement",
+                "section-3-timeline-4-desc": "Final adjustments and artistic enhancement by professional screenwriters",
+                "section-3-h3-2": "Core Technological Advantages",
+                "section-3-li-1-strong": "Psychology-Based Technique Library:",
+                "section-3-li-1": "Trained on tens of thousands of film production technique knowledge graphs, not existing scripts. Ensures completely original creation",
+                "section-3-li-2-strong": "New Profession: AI Script Director:",
+                "section-3-li-2": "Human screenwriters become masters of AI, using strong humanistic thinking in a new collaboration model",
+                "section-3-li-3-strong": "Real-Time Optimization:",
+                "section-3-li-3": "AI instantly adjusts and improves scripts based on producer feedback",
+                "section-3-case-h3": "Case Study: Film 'Siddhartha'",
+                "section-3-case-p1": "International co-production project challenging to express profound Buddhist philosophy from a modern perspective",
+                "section-3-highlight-1": "20+ Perspectives",
+                "section-3-case-p2": "Generated script outlines from diverse angles like female perspective, modern youth perspective, fantasy style",
+                "section-3-highlight-2": "70% Cost Reduction",
+                "section-3-case-p3": "Saved about two-thirds of script development budget, reallocating to more important production departments",
+                "section-4-title": "4. Budget Management System",
+                "section-4-h3-1": "New Management Paradigm for Film Production",
+                "section-4-p1": "Film project management is as complex as building blocks in the air. One adjustment affects the whole. Blackhole AI's multi-dimensional budget controller monitors and simulates all resource changes in real time.",
+                "section-4-h3-2": "Smart Adjustment Example",
+                "section-4-case-h4": "Response to Lead Actor Schedule Conflict",
+                "section-4-case-strong-1": "Traditional Problems:",
+                "section-4-case-span-1": "Entire crew on standby, daily costs incurred, or huge losses from actor replacement",
+                "section-4-case-strong-2": "Blackhole AI Solution:",
+                "section-4-case-li-1": "Instant Impact Evaluation: Instantly analyze the impact of schedule changes on each scene",
+                "section-4-case-li-2": "Optimal Shooting Sequence Reorganization: Proposals for advance shooting of alternative scenes, use of stand-ins, etc.",
+                "section-4-case-li-3": "Comprehensive Calculation of 20+ Parameters: Derive optimal solution integrating actor schedules, location costs, weather forecasts, etc.",
+                "section-4-h3-3": "Multi-Agent Collaboration Architecture",
+                "section-4-stat-1-h4": "Production Agent",
+                "section-4-stat-1-p": "Optimizes shooting schedules, location management, equipment procurement",
+                "section-4-stat-2-h4": "Finance Agent",
+                "section-4-stat-2-p": "Handles budget allocation, cash flow management, cost forecasting",
+                "section-4-stat-3-h4": "Environment Agent",
+                "section-4-stat-3-p": "Optimizes considering weather, seasons, location conditions",
+                "section-5-title": "5. AI Storyboard Design",
+                "section-5-h3-1": "Revolution in Film Visuals",
+                "section-5-p1": "Storyboard production that traditionally takes 2-6 months or more enters a new era of \"one-click generation\". AI can imitate any master's audiovisual style and produce 2000+ high-quality storyboards in 1 week.",
+                "section-5-h3-2": "Master Style Library",
+                "section-5-feature-1-h4": "Hitchcock",
+                "section-5-feature-1-p": "Suspense direction, unique camera angles and compositions",
+                "section-5-feature-2-h4": "Bergman",
+                "section-5-feature-2-p": "Psychological storyboards, close-ups and light-shadow usage",
+                "section-5-feature-3-h4": "Kubrick",
+                "section-5-feature-3-p": "Symmetric compositions, unique tones and visual styles",
+                "section-5-feature-4-h4": "Tarkovsky",
+                "section-5-feature-4-p": "Poetic visual language, long takes and fusion of natural elements",
+                "section-5-h3-3": "Technological Advantages",
+                "section-5-case-h4-1": "Breakthrough in Generation Speed",
+                "section-5-highlight-1": "30 Minutes",
+                "section-5-case-p1": "Fully generate complete storyboard table for 1 scene",
+                "section-5-case-h4-2": "Flexible Adaptation Ability",
+                "section-5-case-p2": "Immediate response to new locations or actor changes:",
+                "section-5-case-li-1": "Automatically adapt just by providing photos/videos of new scenes",
+                "section-5-case-li-2": "Automatic adjustment of character settings and dialogue when changing actors",
+                "section-5-case-li-3": "Reduce pre-production meeting time by 70% or more",
+                "section-5-quote": "\"I don't imitate, I steal\" — As director Quentin Tarantino said, learning the audiovisual language of masters is the essence of film production.",
+                "section-6-title": "6. Music Pre-Production",
+                "section-6-h3-1": "New Workflow for Film Music Production",
+                "section-6-p1": "Traditionally, composers created music after video editing was complete, which could cause mismatches between the director's music style expectations and the final product. Blackhole AI provides \"film music pre-production\" service, generating large amounts of stylized music from the script stage.",
+                "section-6-case-h3": "Case Study: Immersive Theater 'Lonely Heart Lady'",
+                "section-6-highlight": "20 Minutes",
+                "section-6-case-p1": "Completed main theme song using SUNO4.5",
+                "section-6-case-h4": "Project Results:",
+                "section-6-case-li-1": "Generated 100+ original music fragments",
+                "section-6-case-li-2": "Covering diverse styles like symphony, electronic, ethnic music",
+                "section-6-case-li-3": "Director could determine music direction in advance, greatly reducing later adjustments",
+                "section-6-h3-2": "Collaboration with Professionals",
+                "section-6-li-1-strong": "Respect Composer's Creativity:",
+                "section-6-li-1": "AI provides reference samples, shortening professional composers' creation time",
+                "section-6-li-2-strong": "Pre-Determination of Emotional Tone:",
+                "section-6-li-2": "Clarify emotional direction of main melody, characteristics of required instrumentation",
+                "section-6-li-3-strong": "Reduction of Iterative Communication:",
+                "section-6-li-3": "Avoid trial-and-error communication by determining direction in advance",
+                "section-6-h3-3": "Music Style Customization",
+                "section-6-feature-1-h4": "Classical",
+                "section-6-feature-1-p": "Orchestral arrangements, chamber music, solo instruments, etc., classical music styles matching film's emotional needs",
+                "section-6-feature-2-h4": "Electronic Music",
+                "section-6-feature-2-p": "Synthesizers, ambient, techno, etc., electronic music elements creating modern atmospheres",
+                "section-6-feature-3-h4": "Ethnic Music",
+                "section-6-feature-3-p": "Traditional instruments and music styles from various countries, strengthening the story's cultural background",
+                "section-6-feature-4-h4": "Hybrid",
+                "section-6-feature-4-p": "Fusion of multiple styles to create unique and innovative soundscapes",
+                "section-7-title": "7. VFX Pre-Visualization Production",
+                "section-7-h3-1": "Revolution in VFX Cost Management",
+                "section-7-p1": "Traditionally, complex VFX shots were commissioned to VFX companies in post-production, with high costs and the need for remakes if the effect was unsatisfactory. Blackhole AI uses virtual engines and graphic generation capabilities to generate pre-visualization of VFX scenes in the early stage.",
+                "section-7-h3-2": "Benefits of Pre-Visualization Production",
+                "section-7-stat-1-h4": "Pre-Visualization",
+                "section-7-stat-1-p": "Director confirms final effects before shooting, enabling creative adjustments",
+                "section-7-stat-2-h4": "Cost Prediction",
+                "section-7-stat-2-p": "Accurately grasp VFX budget in advance, avoiding budget overruns",
+                "section-7-stat-3-h4": "Shooting Efficiency",
+                "section-7-stat-3-p": "On-site team clearly understands VFX shot requirements",
+                "section-7-stat-4-h4": "Technical Verification",
+                "section-7-stat-4-p": "Verify feasibility of complex VFX in advance",
+                "section-7-h3-3": "Supported VFX Types",
+                "section-7-case-h4-1": "Environmental Effects",
+                "section-7-case-li-1-1": "Weather simulation (rain, snow, fog, storm)",
+                "section-7-case-li-1-2": "Natural disasters (earthquake, tsunami, volcanic eruption)",
+                "section-7-case-li-1-3": "Space/Sci-Fi environments",
+                "section-7-case-h4-2": "Character Effects",
+                "section-7-case-li-2-1": "Digital doubles",
+                "section-7-case-li-2-2": "Creature design",
+                "section-7-case-li-2-3": "Transformation/morphing effects",
+                "section-7-case-h4-3": "Action Sequences",
+                "section-7-case-li-3-1": "Explosion/destruction scenes",
+                "section-7-case-li-3-2": "Vehicle chases",
+                "section-7-case-li-3-3": "Aerial battles/space battles",
+                "section-7-h3-4": "Production Process",
+                "section-7-timeline-1-title": "Concept Design",
+                "section-7-timeline-1-desc": "Develop initial concepts for VFX scenes based on the script",
+                "section-7-timeline-2-title": "3D Modeling",
+                "section-7-timeline-2-desc": "Build necessary 3D elements and assets",
+                "section-7-timeline-3-title": "Animation Production",
+                "section-7-timeline-3-desc": "Set movements and timing to create basic animations",
+                "section-7-timeline-4-title": "Rendering Output",
+                "section-7-timeline-4-desc": "Generate high-quality pre-visualization footage for evaluation",
+                "section-8-title": "8. Scene Smart Adaptation",
+                "section-8-h3-1": "Maximize Production Flexibility",
+                "section-8-p1": "In traditional production processes, if the director likes a new location before shooting, the screenwriter needed several days to revise the script. Blackhole AI's multi-modal adaptation capability allows these adjustments to be automatically completed in hours.",
+                "section-8-h3-2": "Examples of Adaptation Capabilities",
+                "section-8-case-h4-1": "Response to Location Change",
+                "section-8-case-p1": "Director just provides photos or videos of the new location:",
+                "section-8-case-li-1-1": "AI analyzes visual features",
+                "section-8-case-li-1-2": "Regenerates story and storyboard for corresponding scenes",
+                "section-8-case-li-1-3": "Ensures perfect fusion of script, shots, and new location",
+                "section-8-case-h4-2": "Response to Actor Replacement",
+                "section-8-case-p2": "Just input basic features of new actor:",
+                "section-8-case-li-2-1": "Automatically adjust character dialogue and setting details",
+                "section-8-case-li-2-2": "Generate new actor version of script and storyboard",
+                "section-8-case-li-2-3": "Maintain character consistency and credibility",
+                "section-8-h3-3": "Implementation Effects",
+                "section-8-highlight-1": "70%",
+                "section-8-stat-1-p": "Meeting Time Reduction",
+                "section-8-highlight-2": "90%",
+                "section-8-stat-2-p": "Reshooting Rate Decrease",
+                "section-8-h3-4": "Smart Adaptation Process",
+                "section-8-ol-1-strong": "Material Input:",
+                "section-8-ol-1": "Provide images/video materials of new location or actor",
+                "section-8-ol-2-strong": "AI Analysis:",
+                "section-8-ol-2": "Comprehensive analysis of visual features, spatial structure, lighting conditions, etc.",
+                "section-8-ol-3-strong": "Automatic Adjustment:",
+                "section-8-ol-3": "Optimize script, storyboard, shooting plan according to new conditions",
+                "section-8-ol-4-strong": "Manual Confirmation:",
+                "section-8-ol-4": "Director and producer confirm and approve final adjustment plan",
+                "section-9-title": "9. Proprietary Script Plagiarism Detection System",
+                "plagiarism-h2": "Guarantee of Completely Original Creation",
+                "plagiarism-p": "Trained on tens of thousands of technique libraries based on psychology, not existing script libraries<br>Avoid plagiarism risks from the root and protect your creative copyright",
+                "section-9-h3-1": "Technical Approach",
+                "section-9-p1": "Blackhole AI's training method is innovative. Instead of training directly on scripts, it uses tens of thousands of film technique knowledge graphs. This is the same as the process human screenwriters learn techniques, but AI learns faster.",
+                "section-9-feature-1-h4": "Technique Library Learning",
+                "section-9-feature-1-p": "Based on knowledge graphs of film production techniques, without using existing scripts",
+                "section-9-feature-2-h4": "Originality Guarantee",
+                "section-9-feature-2-p": "All scripts are newly created, completely avoiding copyright disputes",
+                "section-9-feature-3-h4": "Smart Plagiarism Detection",
+                "section-9-feature-3-p": "Real-time similarity detection to ensure work uniqueness",
+                "section-9-feature-4-h4": "Copyright Protection",
+                "section-9-feature-4-p": "Provide complete copyright protection solutions for your creativity",
+                "section-9-h3-2": "Consideration for Copyright",
+                "section-9-p2": "In film history, there is no copyright for \"storyboard style\". Humanity has always learned masters' audiovisual language, combining it individually to create new expressions. AI just makes this process more efficient.",
+                "section-10-title": "10. Achievements and Case Studies",
+                "section-10-h3-1": "Case 1: Film 'Boy's Journey'",
+                "section-10-case-1-p1": "Mid-budget work depicting youth growth in a military training camp. From story outline to shooting completion in just 2 months.",
+                "section-10-case-1-h4-1": "Challenge",
+                "section-10-case-1-p2": "The screenwriter needed to deeply depict psychological changes of multiple boys, but lacked psychology expertise, and self-study would take more than half a year.",
+                "section-10-case-1-h4-2": "Solution",
+                "section-10-case-1-p3": "Blackhole AI introduced a vast \"developmental psychology\" knowledge base. AI provided detailed psychological state reports and development trajectories for each boy character.",
+                "section-10-case-1-h4-3": "Results",
+                "section-10-case-1-li-1": "Script development period shortened to half of planned",
+                "section-10-case-1-li-2": "Related research labor costs reduced by 50% or more",
+                "section-10-case-1-li-3": "Depth and authenticity of character depiction greatly improved",
+                "section-10-h3-2": "Case 2: Film 'Siddhartha'",
+                "section-10-case-2-p1": "International co-production depicting the influence of Buddha Siddhartha's thoughts on modern life.",
+                "section-10-case-2-h4-1": "Challenge",
+                "section-10-case-2-p2": "How to interpret profound Buddhist philosophy from the perspective of general audience",
+                "section-10-case-2-h4-2": "Solution",
+                "section-10-case-2-p3": "Blackhole AI team built a specialized \"Buddhist studies\" knowledge database. Required AI to tell Siddhartha's story from different perspectives.",
+                "section-10-case-2-h4-3": "Surprising Results",
+                "section-10-highlight-1": "20+",
+                "section-10-case-2-p4": "Complete script outlines in different perspectives and styles",
+                "section-10-case-2-li-1": "Female perspective version",
+                "section-10-case-2-li-2": "Modern international youth perspective on Buddhist interpretation version",
+                "section-10-case-2-li-3": "Fantasy color, realism, and other diverse types",
+                "section-10-case-2-h4-4": "Final Results",
+                "section-10-case-2-li-4": "Script costs reduced by 70% or more",
+                "section-10-case-2-li-5": "Saved budget reallocated to important departments like art and promotion",
+                "section-10-case-2-li-6": "AI handles repetitive work, human creators focus on true artistic creation",
+                "section-10-stat-1-h4": "30%+",
+                "section-10-stat-1-p": "Average Budget Reduction",
+                "section-10-stat-2-h4": "70%",
+                "section-10-stat-2-p": "Script Production Efficiency Improvement",
+                "section-10-stat-3-h4": "2000+",
+                "section-10-stat-3-p": "Weekly Storyboard Production Volume",
+                "section-10-stat-4-h4": "2 Months",
+                "section-10-stat-4-p": "Script Completion Cycle",
+                "section-11-title": "11. Core Team Introduction",
+                "section-11-p1": "Blackhole AI's core R&D team, jointly developing technical processes by academic elites and artists, shows the direction of future human collaboration.",
+                "section-11-team-1-h4": "Song Huitong (Song Huitong)",
+                "section-11-team-1-role": "Investment Management",
+                "section-11-team-1-p": "PhD, video technology expert, 20+ years industry experience, former co-founder of Australian listed company Atomos, PhD from Macau University of Science and Technology, angel investor in Blackhole AI project",
+                "section-11-team-2-h4": "Kurt (Kurt)",
+                "section-11-team-2-role": "Foundation Architecture Design",
+                "section-11-team-2-p": "PhD, founder of SC Film Academy, nearly 20 years of video education, script, directing experience. Master's in Cinematography from Beijing Film Academy, PhD in Film Management from Macau University of Science and Technology. Specially hired as faculty in second year of PhD and taught for 4 years",
+                "section-11-team-3-h4": "Chen Yansheng (Chen Yansheng)",
+                "section-11-team-3-role": "Chief Technical Expert",
+                "section-11-team-3-p": "PhD, researcher, senior AI engineer, PhD supervisor, expert in Guangdong-Hong Kong-Macao Greater Bay Area AI industry think tank, author of globally top 1% ESI highly cited papers, holds 15 artificial intelligence patents",
+                "section-11-team-4-h4": "Xuan Mengyang (Xuan Mengyang)",
+                "section-11-team-4-role": "Technical Application Implementation",
+                "section-11-team-4-p": "PhD, Tianjin University of Technology major in materials science and computer, Master's in Cinematography from Beijing Film Academy, PhD in Information Art Design from Tsinghua Academy of Arts & Design. Currently developing Blackhole AI education training and smart glasses project with Tsinghua juniors",
+                "section-11-h3": "Expert Advisory Group",
+                "section-11-p2": "Blackhole AI has expert advisory groups in two different fields:",
+                "section-11-li-1-strong": "Technical Advisor:",
+                "section-11-li-1": "Graduate of Tsinghua University Computer Major, currently professor at famous university in Hong Kong and Macao, PhD supervisor",
+                "section-11-li-2-strong": "Industry Advisor:",
+                "section-11-subli-1": "Kim Ki-duk (internationally renowned screenwriter/director, deceased)",
+                "section-11-subli-2": "Ika (American-Dutch director, director of 'City of Power Outage', deceased)",
+                "section-11-subli-3": "Ding Jianguo (mentor of director Bi Gan, investor and producer of 'Roadside Picnic')",
+                "section-11-subli-4": "Zhou Zhiyong (screenwriter of 'Chinese Partners')",
+                "section-11-subli-5": "Chen Han (screenwriter of film 'Red Cliff')",
+                "section-11-quote": "\"Blackhole AI is not just software, but a service system built by an expert team with large language models as the technical foundation. They can provide services to various fields with system construction thinking, not limited to the film industry.\"",
+                "section-12-title": "12. Contact Us",
+                "section-12-h3": "Opening a New Era of AI Film Production",
+                "section-12-p1": "We welcome collaborations with creators of works with Douban 8+ scores or box office over 1 billion in commercial films",
+                "section-12-quote": "\"After 2 months of public testing, we decided not to release on any platform and promote film services as custom projects. AI could cause many creators to lose jobs, which we don't want. However, we sincerely welcome cooperation with excellent creators.\"",
+                "section-12-author": "— Blackhole AI Team",
+                "section-12-h4-1": "Collaboration Conditions",
+                "section-12-p2": "Screenwriters, directors, producers, and presenters of films with Douban 8+ or box office over 1 billion in commercial works",
+                "section-12-h4-2": "Contact Information",
+                "section-12-p3": "For detailed consultations, please contact the assistant via WeChat",
+                "contact-email-strong": "Email:",
+                "contact-email": "kurtsun2201@gmail.com",
+                "contact-wechat-strong": "WeChat:",
+                "contact-wechat": "sczhujiao",
+                "footer": "© 2024 Blackhole AI. All rights reserved.<br>Let's work together to lead Chinese cinema to a new stage"
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('lang', lang);
+            updateLanguage(lang);
         }
 
-        // Music tab switching
-        function showMusicTab(tabId) {
-            showTab(tabId);
-        }
-
-        // Service page navigation
-        function showService(serviceId) {
-            // Hide all service pages
-            document.querySelectorAll('.service-page').forEach(page => {
-                page.style.display = 'none';
-            });
-            
-            // Show selected service
-            document.getElementById(serviceId).style.display = 'block';
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        // Handle navigation clicks
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                if (href && href !== '#') {
-                    const serviceId = href.replace('#', '');
-                    showService(serviceId);
+        function updateLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.body.className = `lang-${lang}`;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key].replace(/\n/g, '<br>');
                 }
             });
-        });
+            document.title = translations[lang]['page-title'];
+        }
 
-        // Smooth scroll for CTA buttons
-        document.querySelectorAll('a[href="#contact"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Here you would typically scroll to a contact section or open a contact modal
-                alert('お問い合わせフォームを開く（実装予定）');
-            });
-        });
+        let currentLang = localStorage.getItem('lang') || 'ja';
+        updateLanguage(currentLang);
     </script>
 </body>
 </html>
