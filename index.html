@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブラックホールAI - サービス詳細</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background-color: #ffffff;
+            color: #1d1d1f;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation (共通) */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            background: linear-gradient(45deg, #000000, #6e40aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+        
+        .nav-links a.active {
+            color: #6e40aa;
+            font-weight: 600;
+        }
+        
+        /* Service Hero Section */
+        .service-hero {
+            padding: 120px 40px 60px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+            text-align: center;
+        }
+        
+        .service-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #000000, #6e40aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .service-hero p {
+            font-size: 20px;
+            color: #86868b;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Service Content Section */
+        .service-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        
+        .content-block {
+            margin-bottom: 80px;
+        }
+        
+        .content-block h2 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #1d1d1f;
+        }
+        
+        .content-block h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .content-block p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .feature-list li {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-list li:hover {
+            background: #ececef;
+            transform: translateX(5px);
+        }
+        
+        .feature-list .icon {
+            font-size: 24px;
+            margin-right: 20px;
+            color: #6e40aa;
+        }
+        
+        .feature-list .content {
+            flex: 1;
+        }
+        
+        .feature-list .content h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        /* Process Timeline */
+        .process-timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 60px 0;
+        }
+        
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e5e7;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 30px;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            width: calc(50% - 40px);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #6e40aa;
+            border-radius: 50%;
+            top: 40px;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            left: -50px;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            right: -50px;
+        }
+        
+        .timeline-item h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #6e40aa;
+        }
+        
+        /* Case Study Card */
+        .case-study {
+            background: #f5f5f7;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        
+        .case-study h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+        
+        .case-study .highlight {
+            font-size: 48px;
+            font-weight: 700;
+            color: #6e40aa;
+            margin: 20px 0;
+        }
+        
+        /* Quote Block */
+        .quote-block {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .quote-block::before {
+            content: '"';
+            font-size: 80px;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            opacity: 0.3;
+        }
+        
+        .quote-block p {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .quote-block .author {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Tabs */
+        .service-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .tab-button {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #86868b;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            color: #1d1d1f;
+        }
+        
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #6e40aa;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
+            margin-top: 100px;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: white;
+            color: #6e40aa;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Back to Top */
+        .back-to-main {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #6e40aa;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(110, 64, 170, 0.3);
+        }
+        
+        .back-to-main:hover {
+            background: #5a359a;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+            }
+            
+            .process-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item::before {
+                left: 10px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Service 1: AI脚本創作 -->
+    <div id="script-service" class="service-page">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">ブラックホールAI</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">AI脚本創作</a></li>
+                    <li><a href="#budget-service">予算統括管理</a></li>
+                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
+                    <li><a href="#music-service">音楽プリプロダクション</a></li>
+                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
+                    <li><a href="#scene-service">シーン適応</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="service-hero">
+            <h1>AI脚本創作サービス</h1>
+            <p>1つのブラックホールAIが20人の脚本家に相当<br>従来の3-6ヶ月の制作期間を1ヶ月未満に短縮</p>
+        </section>
+
+        <section class="service-content">
+            <div class="content-block">
+                <h2>革新的な脚本創作プロセス</h2>
+                <p>映画制作の出発点である脚本創作。従来は数ヶ月から1-2年かかるこのプロセスを、ブラックホールAIは劇的に短縮します。</p>
+                
+                <div class="process-timeline">
+                    <div class="timeline-item">
+                        <h4>第1週：アイデア展開</h4>
+                        <p>核心的なアイデアから20以上の異なる方向のストーリーアウトラインを生成</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第2-3週：脚本評価会</h4>
+                        <p>1-2名の資深脚本家がAI生成案を評価し、最適な方向を選定</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第4-6週：詳細脚本制作</h4>
+                        <p>選定された方向に基づき、3つ以上の詳細な脚本初稿を生成</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第7-8週：人工精修</h4>
+                        <p>プロの脚本家による最終調整と芸術的昇華</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>核心技術の優位性</h2>
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon">🧠</span>
+                        <div class="content">
+                            <h4>心理学ベースの技術ライブラリ</h4>
+                            <p>既存の脚本ではなく、数万の映像制作技法知識グラフで学習。完全にオリジナルな創作を保証</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">👥</span>
+                        <div class="content">
+                            <h4>AI脚本監督という新職業</h4>
+                            <p>人間の脚本家がAIの主人となり、強力な人間性思考でAIを駆使する新しい協業モデル</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🔄</span>
+                        <div class="content">
+                            <h4>リアルタイム最適化</h4>
+                            <p>プロデューサーのフィードバックに基づき、AIが即座に脚本を調整・改善</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>実績ケース：映画『悉達多』</h3>
+                <p>国際共同制作プロジェクトで、仏教哲学の深遠な思想を現代的視点で表現する挑戦</p>
+                <div class="highlight">20+ 視点</div>
+                <p>女性視点、現代青年視点、ファンタジー風など、多様な切り口の脚本アウトラインを生成</p>
+                <div class="highlight">70% コスト削減</div>
+                <p>脚本開発予算の約3分の2を節約し、より重要な制作部門に再配分</p>
+            </div>
+
+            <div class="quote-block">
+                <p>「従来の映画制作では脚本に最低3-6ヶ月必要でしたが、私たちは1ヶ月未満で完成させました。ブラックホールAIの真の実力は、強力な技術で個別のニーズに応えることです。」</p>
+                <div class="author">— 映画プロデューサー（ブラックホールAIカスタマイズサービス初のクライアント）</div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>AI脚本創作で新たな可能性を</h2>
+            <p>あなたのアイデアを最高の脚本に変換します</p>
+            <a href="#contact" class="cta-button">無料相談を予約</a>
+        </section>
+    </div>
+
+    <!-- Service 2: 予算統括管理 -->
+    <div id="budget-service" class="service-page" style="display: none;">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">ブラックホールAI</div>
+                <ul class="nav-links">
+                    <li><a href="#script-service">AI脚本創作</a></li>
+                    <li><a href="#" class="active">予算統括管理</a></li>
+                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
+                    <li><a href="#music-service">音楽プリプロダクション</a></li>
+                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
+                    <li><a href="#scene-service">シーン適応</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="service-hero">
+            <h1>予算統括管理システム</h1>
+            <p>マルチエージェント「スウォーム」システムで<br>プロジェクト予算を最低30%削減</p>
+        </section>
+
+        <section class="service-content">
+            <div class="content-block">
+                <h2>映画制作の新しい管理パラダイム</h2>
+                <p>映画プロジェクト管理は空中で積み木を組み立てるような複雑さ。一つの調整が全体に影響します。ブラックホールAIの多次元予算コントローラーが、すべてのリソース変動をリアルタイムで監視・シミュレーションします。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>スマート調整の実例</h2>
+                <div class="case-study">
+                    <h3>主演俳優のスケジュール衝突への対応</h3>
+                    <p>従来：全クルー待機、毎日コスト発生、または俳優交代による巨額損失</p>
+                    <p><strong>ブラックホールAIソリューション：</strong></p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="icon">📊</span>
+                            <div class="content">
+                                <h4>即時影響評価</h4>
+                                <p>スケジュール変更が各シーンに与える影響を瞬時に分析</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">🔄</span>
+                            <div class="content">
+                                <h4>最適撮影順序の再編成</h4>
+                                <p>代替シーンの先行撮影、スタンドイン使用の提案など</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">💰</span>
+                            <div class="content">
+                                <h4>20以上のパラメータ総合計算</h4>
+                                <p>俳優スケジュール、ロケーション費用、天気予報など総合的に最適解を導出</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>マルチエージェント協業アーキテクチャ</h2>
+                <div class="service-tabs">
+                    <button class="tab-button active" onclick="showTab('agents')">エージェント構成</button>
+                    <button class="tab-button" onclick="showTab('benefits')">導入効果</button>
+                    <button class="tab-button" onclick="showTab('process')">実装プロセス</button>
+                </div>
+                
+                <div id="agents" class="tab-content active">
+                    <ul class="feature-list">
+                        <li>
+                            <span class="icon">🎬</span>
+                            <div class="content">
+                                <h4>制作エージェント</h4>
+                                <p>撮影スケジュール、ロケーション管理、機材調達を最適化</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">💵</span>
+                            <div class="content">
+                                <h4>財務エージェント</h4>
+                                <p>予算配分、キャッシュフロー管理、コスト予測を担当</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">🌤️</span>
+                            <div class="content">
+                                <h4>環境エージェント</h4>
+                                <p>天候、季節、ロケーション条件を考慮した最適化</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="benefits" class="tab-content">
+                    <ul class="feature-list">
+                        <li>
+                            <span class="icon">⚡</span>
+                            <div class="content">
+                                <h4>意思決定スピード向上</h4>
+                                <p>複雑な調整案を数分で生成、従来の数日から大幅短縮</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">🎯</span>
+                            <div class="content">
+                                <h4>リスク最小化</h4>
+                                <p>人為的ミスによる損失を回避、全体最適化を実現</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">📈</span>
+                            <div class="content">
+                                <h4>創造性の解放</h4>
+                                <p>管理業務から解放され、クリエイティブに集中可能</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="process" class="tab-content">
+                    <ol class="feature-list">
+                        <li>
+                            <span class="icon">1️⃣</span>
+                            <div class="content">
+                                <h4>プロジェクトデータ入力</h4>
+                                <p>脚本、予算、スケジュール、チーム情報をシステムに統合</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">2️⃣</span>
+                            <div class="content">
+                                <h4>AIモデリング</h4>
+                                <p>プロジェクト特性に基づくカスタムAIモデルの構築</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">3️⃣</span>
+                            <div class="content">
+                                <h4>リアルタイム最適化</h4>
+                                <p>制作期間中の継続的な監視と調整提案</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>予算を最大限に活用</h2>
+            <p>AIの力で、限られた予算でも最高の作品を</p>
+            <a href="#contact" class="cta-button">デモを申し込む</a>
+        </section>
+    </div>
+
+    <!-- Service 3: AI絵コンテ設計 -->
+    <div id="storyboard-service" class="service-page" style="display: none;">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">ブラックホールAI</div>
+                <ul class="nav-links">
+                    <li><a href="#script-service">AI脚本創作</a></li>
+                    <li><a href="#budget-service">予算統括管理</a></li>
+                    <li><a href="#" class="active">AI絵コンテ設計</a></li>
+                    <li><a href="#music-service">音楽プリプロダクション</a></li>
+                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
+                    <li><a href="#scene-service">シーン適応</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="service-hero">
+            <h1>AI絵コンテ設計</h1>
+            <p>1週間で2000枚以上の高品質絵コンテを生成<br>巨匠の視覚スタイルを自在に再現</p>
+        </section>
+
+        <section class="service-content">
+            <div class="content-block">
+                <h2>映画ビジュアルの革命</h2>
+                <p>従来2-6ヶ月以上かかる絵コンテ制作が「ワンクリック生成」の新時代へ。AIは任意の巨匠の視聴覚スタイルを模倣し、1週間で2000枚以上の高品質絵コンテを生産できます。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>巨匠スタイルライブラリ</h2>
+                <div class="feature-list">
+                    <li>
+                        <span class="icon">🎭</span>
+                        <div class="content">
+                            <h4>ヒッチコック</h4>
+                            <p>サスペンスの演出、独特のカメラアングルと構図</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🎨</span>
+                        <div class="content">
+                            <h4>ベルイマン</h4>
+                            <p>心理的な絵コンテ、クローズアップと光影の運用</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🏛️</span>
+                        <div class="content">
+                            <h4>キューブリック</h4>
+                            <p>対称的な構図、独特の色調とビジュアルスタイル</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🌌</span>
+                        <div class="content">
+                            <h4>タルコフスキー</h4>
+                            <p>詩的な映像言語、長回しと自然要素の融合</p>
+                        </div>
+                    </li>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>技術的優位性</h2>
+                <div class="case-study">
+                    <h3>生成速度の突破</h3>
+                    <div class="highlight">30分</div>
+                    <p>1シーンの全絵コンテ表を完全生成</p>
+                    
+                    <h3>柔軟な適応能力</h3>
+                    <p>新しいロケーションや俳優変更への即時対応：</p>
+                    <ul>
+                        <li>新しいシーンの写真・動画素材を提供するだけで自動適応</li>
+                        <li>俳優変更時のキャラクター設定と台詞の自動調整</li>
+                        <li>70%以上のプリプロダクション会議時間を削減</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-block">
+                <p>「私は模倣しない、私は盗む」— クエンティン・タランティーノ監督の言葉通り、巨匠たちの視聴覚言語を学ぶことは映画制作の本質です。ブラックホールAIはこの学習プロセスを加速させます。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>著作権への配慮</h2>
+                <p>映画史において「絵コンテスタイル」の著作権は存在しません。人類は常に巨匠の視聴覚言語を学び、個性的に組み合わせて新しい表現を生み出してきました。AIはこのプロセスをより効率的にするだけです。</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>ビジュアルストーリーテリングの新次元へ</h2>
+            <p>あなたの映像ビジョンを完璧に具現化</p>
+            <a href="#contact" class="cta-button">サンプルを見る</a>
+        </section>
+    </div>
+
+    <!-- Service 4: 音楽プリプロダクション -->
+    <div id="music-service" class="service-page" style="display: none;">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">ブラックホールAI</div>
+                <ul class="nav-links">
+                    <li><a href="#script-service">AI脚本創作</a></li>
+                    <li><a href="#budget-service">予算統括管理</a></li>
+                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
+                    <li><a href="#" class="active">音楽プリプロダクション</a></li>
+                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
+                    <li><a href="#scene-service">シーン適応</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="service-hero">
+            <h1>音楽プリプロダクション</h1>
+            <p>脚本段階で数百曲のスタイル音楽を生成<br>20分でテーマソング完成、ポストプロダクションコストを大幅削減</p>
+        </section>
+
+        <section class="service-content">
+            <div class="content-block">
+                <h2>映画音楽制作の新しいワークフロー</h2>
+                <p>従来、作曲家は映像編集完了後に音楽を創作していましたが、これは監督の音楽スタイルへの期待と最終成果物の不一致を引き起こす可能性があります。ブラックホールAIは「映画音楽プリプロダクション」サービスを提供し、脚本段階から大量のスタイル化された音楽を生成します。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>実績ケース</h2>
+                <div class="case-study">
+                    <h3>没入型演劇『寂寞芳心小姐』</h3>
+                    <div class="highlight">20分</div>
+                    <p>SUNO4.5を使用してメインテーマ曲を完成</p>
+                    
+                    <p>プロジェクト完了後の成果：</p>
+                    <ul>
+                        <li>100曲以上のオリジナル音楽フラグメントを生成</li>
+                        <li>交響楽、電子音楽、民族音楽など多様なスタイルをカバー</li>
+                        <li>監督が事前に音楽の方向性を確定でき、後期調整を大幅削減</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>プロフェッショナルとの協業</h2>
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon">🎼</span>
+                        <div class="content">
+                            <h4>作曲家の創造性を尊重</h4>
+                            <p>AIは参考サンプルを提供し、プロの作曲家の創作時間を短縮</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🎵</span>
+                        <div class="content">
+                            <h4>感情基調の事前確定</h4>
+                            <p>メインメロディの感情的方向性、必要な楽器編成の特色を明確化</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🔄</span>
+                        <div class="content">
+                            <h4>反復コミュニケーションの削減</h4>
+                            <p>事前の方向性確定により、試行錯誤のコミュニケーションを回避</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h2>音楽スタイルカスタマイズ</h2>
+                <div class="service-tabs">
+                    <button class="tab-button active" onclick="showMusicTab('classical')">クラシック</button>
+                    <button class="tab-button" onclick="showMusicTab('electronic')">電子音楽</button>
+                    <button class="tab-button" onclick="showMusicTab('ethnic')">民族音楽</button>
+                    <button class="tab-button" onclick="showMusicTab('hybrid')">ハイブリッド</button>
+                </div>
+                
+                <div id="classical" class="tab-content active">
+                    <p>オーケストラ編成、室内楽、独奏楽器など、映画の感情的ニーズに応じた古典音楽スタイル</p>
+                </div>
+                
+                <div id="electronic" class="tab-content">
+                    <p>シンセサイザー、アンビエント、テクノなど、現代的な雰囲気を作る電子音楽要素</p>
+                </div>
+                
+                <div id="ethnic" class="tab-content">
+                    <p>各国の伝統楽器と音楽スタイル、ストーリーの文化的背景を強化</p>
+                </div>
+                
+                <div id="hybrid" class="tab-content">
+                    <p>複数のスタイルを融合し、独特で革新的なサウンドスケープを創造</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>完璧な音楽体験を創造</h2>
+            <p>あなたの映画に最適な音楽ソリューション</p>
+            <a href="#contact" class="cta-button">音楽サンプルを聴く</a>
+        </section>
+    </div>
+
+    <!-- Service 5: 特殊効果プレビズ制作 -->
+    <div id="vfx-service" class="service-page" style="display: none;">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">ブラックホールAI</div>
+                <ul class="nav-links">
+                    <li><a href="#script-service">AI脚本創作</a></li>
+                    <li><a href="#budget-service">予算統括管理</a></li>
+                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
+                    <li><a href="#music-service">音楽プリプロダクション</a></li>
+                    <li><a href="#" class="active">特殊効果プレビズ</a></li>
+                    <li><a href="#scene-service">シーン適応</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="service-hero">
+            <h1>特殊効果プレビズ制作</h1>
+            <p>撮影前に最終効果を確認<br>高額な後期やり直しを完全回避</p>
+        </section>
+
+        <section class="service-content">
+            <div class="content-block">
+                <h2>VFXコスト管理の革命</h2>
+                <p>従来、複雑な特殊効果ショットは撮影後期に特効会社に委託して制作され、費用が高額で、効果が不満足な場合は再制作が必要でした。ブラックホールAIは仮想エンジンとグラフィック生成能力を活用し、前期段階で特効シーンのプレビズを生成できます。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>プレビズ制作の利点</h2>
+                <div class="feature-list">
+                    <li>
+                        <span class="icon">👁️</span>
+                        <div class="content">
+                            <h4>事前可視化</h4>
+                            <p>監督が撮影前に最終効果を確認し、創造的な調整が可能</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">💰</span>
+                        <div class="content">
+                            <h4>コスト予測の正確性</h4>
+                            <p>正確な特効予算を事前に把握し、予算超過を回避</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🎬</span>
+                        <div class="content">
+                            <h4>撮影効率の向上</h4>
+                            <p>現場チームが特効ショットの要求を明確に理解</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🔧</span>
+                        <div class="content">
+                            <h4>技術的検証</h4>
+                            <p>複雑な特効の実現可能性を事前に検証</p>
+                        </div>
+                    </li>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>対応可能な特効タイプ</h2>
+                <div class="case-study">
+                    <h3>環境効果</h3>
+                    <ul>
+                        <li>天候シミュレーション（雨、雪、霧、嵐）</li>
+                        <li>自然災害（地震、津波、火山噴火）</li>
+                        <li>宇宙・SF環境</li>
+                    </ul>
+                    
+                    <h3>キャラクター効果</h3>
+                    <ul>
+                        <li>デジタルダブル</li>
+                        <li>クリーチャーデザイン</li>
+                        <li>変身・変形効果</li>
+                    </ul>
+                    
+                    <h3>アクションシーケンス</h3>
+                    <ul>
+                        <li>爆発・破壊シーン</li>
+                        <li>車両追跡</li>
+                        <li>空中戦・宇宙戦</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>制作プロセス</h2>
+                <div class="process-timeline">
+                    <div class="timeline-item">
+                        <h4>コンセプトデザイン</h4>
+                        <p>脚本に基づき、特効シーンの初期コンセプトを開発</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>3Dモデリング</h4>
+                        <p>必要な3D要素とアセットを構築</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>アニメーション制作</h4>
+                        <p>動きとタイミングを設定し、基本的なアニメーションを作成</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>レンダリング出力</h4>
+                        <p>高品質のプレビズ映像を生成し、評価用に提供</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>ビジュアルの限界を突破</h2>
+            <p>想像を現実に変える特殊効果ソリューション</p>
+            <a href="#contact" class="cta-button">プレビズサンプルを見る</a>
+        </section>
+    </div>
+
+    <!-- Service 6: シーンスマート適応 -->
+    <div id="scene-service" class="service-page" style="display: none;">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">ブラックホールAI</div>
+                <ul class="nav-links">
+                    <li><a href="#script-service">AI脚本創作</a></li>
+                    <li><a href="#budget-service">予算統括管理</a></li>
+                    <li><a href="#storyboard-service">AI絵コンテ設計</a></li>
+                    <li><a href="#music-service">音楽プリプロダクション</a></li>
+                    <li><a href="#vfx-service">特殊効果プレビズ</a></li>
+                    <li><a href="#" class="active">シーン適応</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="service-hero">
+            <h1>シーンスマート適応</h1>
+            <p>新しいロケーションと俳優変更に自動対応<br>数時間で脚本調整を完了</p>
+        </section>
+
+        <section class="service-content">
+            <div class="content-block">
+                <h2>制作の柔軟性を最大化</h2>
+                <p>従来の制作プロセスでは、撮影前に監督が新しいロケーションを気に入った場合、脚本家が数日かけて脚本を修正する必要がありました。ブラックホールAIのマルチモーダル適応能力により、これらの調整は数時間で自動完了します。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>適応能力の実例</h2>
+                <div class="case-study">
+                    <h3>ロケーション変更への対応</h3>
+                    <p>監督が新しいロケーションの写真や動画を提供するだけで：</p>
+                    <ul>
+                        <li>AIが視覚的特徴を解析</li>
+                        <li>対応するシーンのストーリーと絵コンテを再生成</li>
+                        <li>脚本、ショットと新しいロケーションの完璧な融合を確保</li>
+                    </ul>
+                    
+                    <h3>俳優交代への対応</h3>
+                    <p>新しい俳優の基本特徴を入力するだけで：</p>
+                    <ul>
+                        <li>キャラクターの台詞と設定詳細を自動調整</li>
+                        <li>新俳優バージョンの脚本と絵コンテを生成</li>
+                        <li>キャラクターの一貫性と信憑性を維持</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>導入効果</h2>
+                <div class="highlight">70%削減</div>
+                <p>プリプロダクション会議のコミュニケーション時間</p>
+                
+                <div class="highlight">90%減少</div>
+                <p>脚本とロケーション不一致による再撮影率</p>
+                
+                <p>AIにより「脚本の現実適応」が前例のない効率性と科学性を実現しました。</p>
+            </div>
+
+            <div class="content-block">
+                <h2>スマート適応プロセス</h2>
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon">📸</span>
+                        <div class="content">
+                            <h4>素材入力</h4>
+                            <p>新しいロケーションや俳優の画像/動画素材を提供</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🤖</span>
+                        <div class="content">
+                            <h4>AI分析</h4>
+                            <p>視覚特徴、空間構造、光線条件などを総合分析</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">✏️</span>
+                        <div class="content">
+                            <h4>自動調整</h4>
+                            <p>脚本、絵コンテ、撮影計画を新しい条件に合わせて最適化</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">✅</span>
+                        <div class="content">
+                            <h4>人工確認</h4>
+                            <p>監督とプロデューサーが最終調整案を確認・承認</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>制作の自由度を最大限に</h2>
+            <p>変化に素早く対応し、創造性を制限しない</p>
+            <a href="#contact" class="cta-button">詳細を問い合わせる</a>
+        </section>
+    </div>
+
+    <!-- Back to Main Button -->
+    <a href="index.html" class="back-to-main">↩</a>
+
+    <script>
+        // Tab switching function
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Music tab switching
+        function showMusicTab(tabId) {
+            showTab(tabId);
+        }
+
+        // Service page navigation
+        function showService(serviceId) {
+            // Hide all service pages
+            document.querySelectorAll('.service-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected service
+            document.getElementById(serviceId).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Handle navigation clicks
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    const serviceId = href.replace('#', '');
+                    showService(serviceId);
+                }
+            });
+        });
+
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href="#contact"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Here you would typically scroll to a contact section or open a contact modal
+                alert('お問い合わせフォームを開く（実装予定）');
+            });
+        });
+    </script>
+</body>
+</html>
